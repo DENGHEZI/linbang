@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>配送中 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .step-active { background-color: #4A90D9; color: white; border-color: #4A90D9; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部导航 -->
+<div class="bg-main-blue h-[52px] flex items-center flex-none">
+<h1 class="text-white font-bold text-[18px] w-full text-center">配送中</h1>
+</div>
+<div class="bg-white flex-none flex border-b border-gray-50">
+<button class="flex-1 py-3 text-[14px] text-center font-bold text-main-blue border-b-2 border-main-blue">待取件</button>
+<button class="flex-1 py-3 text-[14px] text-center text-gray-400">进行中</button>
+<button class="flex-1 py-3 text-[14px] text-center text-gray-400">已送达</button>
+</div>
+<div class="flex-1 overflow-y-auto px-[14px] py-4 hide-scrollbar space-y-[16px]">
+<div class="bg-white rounded-xl p-[14px] card-shadow">
+<div class="flex justify-between items-center mb-4">
+<span class="text-[11px] text-gray-400">订单号: ER20260723001</span>
+<span class="bg-blue-50 text-main-blue text-[11px] px-2 py-0.5 rounded">快递代取</span>
+</div>
+<!-- 步骤条 - 缩小 -->
+<div class="flex justify-between mb-6 relative">
+<div class="absolute top-2.5 left-[10%] right-[10%] h-[1px] bg-gray-100 z-0"></div>
+<div class="relative z-10 flex flex-col items-center flex-1">
+<div class="w-5 h-5 rounded-full border border-gray-200 bg-white flex items-center justify-center text-[10px] step-active">1</div>
+<span class="text-[10px] mt-1 text-main-blue">已接单</span>
+</div>
+<div class="relative z-10 flex flex-col items-center flex-1">
+<div class="w-5 h-5 rounded-full border border-gray-200 bg-white flex items-center justify-center text-[10px] text-gray-300">2</div>
+<span class="text-[10px] mt-1 text-gray-400">待取件</span>
+</div>
+<div class="relative z-10 flex flex-col items-center flex-1">
+<div class="w-5 h-5 rounded-full border border-gray-200 bg-white flex items-center justify-center text-[10px] text-gray-300">3</div>
+<span class="text-[10px] mt-1 text-gray-400">配送中</span>
+</div>
+<div class="relative z-10 flex flex-col items-center flex-1">
+<div class="w-5 h-5 rounded-full border border-gray-200 bg-white flex items-center justify-center text-[10px] text-gray-300">4</div>
+<span class="text-[10px] mt-1 text-gray-400">已送达</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 mb-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+<span class="text-[13px]">取: 华工驿站 (中通柜 8522)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-orange-400 rounded-full"></div>
+<span class="text-[13px]">送: 宿舍12号楼 502</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-gray-50">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full" src="/agent-py/static/source/images/placeholder.svg"/>
+<span class="text-[12px]">张同学 (138****0000)</span>
+</div>
+<button class="bg-main-blue text-white px-4 py-1.5 rounded-full text-[12px] font-bold" onclick="confirmPickup()">确认取件</button>
+</div>
+</div>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[52px] bg-white border-t border-gray-100 flex items-center justify-around z-[100]">
+<a class="flex flex-col items-center text-gray-400" href="./rider-hall.html">
+<iconify-icon class="text-[18px]" icon="mdi:clipboard-list-outline"></iconify-icon>
+<span class="text-[10px]">抢单</span>
+</a>
+<a class="flex flex-col items-center text-main-blue" href="./rider-delivery.html">
+<iconify-icon class="text-[18px]" icon="mdi:truck-delivery"></iconify-icon>
+<span class="text-[10px]">配送</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./rider-earnings.html">
+<iconify-icon class="text-[18px]" icon="mdi:currency-cny"></iconify-icon>
+<span class="text-[10px]">收益</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./rider-profile.html">
+<iconify-icon class="text-[18px]" icon="mdi:account-circle-outline"></iconify-icon>
+<span class="text-[10px]">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function confirmPickup() {
+            showToast('取件成功，正在配送中');
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

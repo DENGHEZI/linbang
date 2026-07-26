@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>注册 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<div class="bg-main-blue h-[140px] flex-none flex flex-col items-center justify-center text-white relative">
+<h1 class="text-[18px] font-bold">邻寝帮</h1>
+<p class="text-[14px] text-white text-center mt-[4px]">取快递、带三餐，邻寝帮随叫随到</p>
+</div>
+<div class="flex-1 px-[14px] -mt-6 relative z-10">
+<div class="bg-white rounded-xl card-shadow p-[14px] space-y-[10px]">
+<div class="bg-[#F5F8FA] rounded-lg px-4 py-3">
+<input class="bg-transparent outline-none text-[14px] w-full" placeholder="手机号" type="tel"/>
+</div>
+<div class="flex gap-2">
+<div class="flex-1 bg-[#F5F8FA] rounded-lg px-4 py-3">
+<input class="bg-transparent outline-none text-[14px] w-full" placeholder="验证码" type="number"/>
+</div>
+<button class="text-main-blue text-[12px] px-2">获取验证码</button>
+</div>
+<div class="bg-[#F5F8FA] rounded-lg px-4 py-3">
+<input class="bg-transparent outline-none text-[14px] w-full" placeholder="设置密码" type="password"/>
+</div>
+<div class="bg-[#F5F8FA] rounded-lg px-4 py-3">
+<input class="bg-transparent outline-none text-[14px] w-full" placeholder="确认密码" type="password"/>
+</div>
+<button class="w-full bg-main-blue text-white py-3 rounded-lg text-[16px] font-medium mt-2" onclick="handleRegister()">立即注册</button>
+</div>
+<div class="mt-6 text-center">
+<span class="text-[14px] text-gray-400">已有账号？</span>
+<a class="text-main-blue text-[14px] font-medium" href="./login.html">登录</a>
+</div>
+</div>
+</div>
+<script>
+        function handleRegister() {
+            showToast('注册成功！');
+            setTimeout(() => {
+                window.location.href = './login.html';
+            }, 1000);
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

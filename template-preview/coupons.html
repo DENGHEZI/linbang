@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>优惠券中心 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .text-main-blue { color: #4A90D9; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .bottom-nav-active { color: #4A90D9; }
+        .tab-active { color: #4A90D9; border-bottom: 2px solid #4A90D9; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 未登录引导 -->
+<div class="hidden absolute inset-0 bg-white z-[200] flex flex-col items-center justify-center px-10 text-center" id="login-guide">
+<iconify-icon class="text-6xl text-gray-200 mb-4" icon="mdi:ticket-lock-outline"></iconify-icon>
+<h3 class="text-[18px] font-bold mb-2">请先登录</h3>
+<p class="text-[14px] text-gray-400 mb-8">登录后即可查看并使用优惠券</p>
+<a class="w-full bg-main-blue text-white py-3 rounded-xl font-medium" href="./login.html">前往登录</a>
+</div>
+<!-- 顶部导航 -->
+<div class="bg-main-blue h-[80px] p-6 pb-2 flex-none flex items-end">
+<div class="flex items-center w-full relative">
+<a class="text-white text-xl" href="./profile.html">
+<iconify-icon icon="mdi:chevron-left"></iconify-icon>
+</a>
+<h1 class="text-white text-[18px] font-medium absolute left-1/2 -translate-x-1/2">优惠券中心</h1>
+</div>
+</div>
+<!-- Tab 切换 -->
+<div class="bg-white flex flex-none border-b border-gray-50">
+<button class="flex-1 py-3 text-[14px] font-medium tab-active" id="tab-available" onclick="switchTab('available')">可用优惠券</button>
+<button class="flex-1 py-3 text-[14px] font-medium text-gray-400" id="tab-used" onclick="switchTab('used')">已使用</button>
+<button class="flex-1 py-3 text-[14px] font-medium text-gray-400" id="tab-expired" onclick="switchTab('expired')">已过期</button>
+</div>
+<!-- 内容区 -->
+<div class="flex-1 overflow-y-auto hide-scrollbar p-4 space-y-3 pb-20" id="coupon-list">
+<!-- 优惠券数据由 JS 动态生成，以下为静态示例模板 -->
+</div>
+<!-- 底部导航 -->
+<div class="bg-white h-[60px] border-t border-gray-100 flex items-center justify-around flex-none relative z-50">
+<div class="absolute -top-10 right-4 text-[10px] text-gray-300 cursor-pointer" id="dev-trigger" onclick="activateDev()">DEV</div>
+<a class="flex flex-col items-center justify-center text-gray-400" href="./home.html">
+<iconify-icon class="text-[24px]" icon="mdi:home-variant-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[24px]" icon="mdi:format-list-bulleted"></iconify-icon>
+<span class="text-[10px] mt-0.5">服务单</span>
+</a>
+<div class="relative -mt-8 flex flex-col items-center">
+<a class="w-12 h-12 bg-main-blue rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-200 border-4 border-[#F5F8FA]" href="./publish.html">
+<iconify-icon class="text-[24px]" icon="mdi:plus"></iconify-icon>
+</a>
+<span class="text-[10px] mt-1 text-main-blue font-medium">发布+</span>
+</div>
+<a class="flex flex-col items-center justify-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[24px]" icon="mdi:text-box-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">订单</span>
+</a>
+<a class="flex flex-col items-center justify-center bottom-nav-active" href="./profile.html">
+<iconify-icon class="text-[24px]" icon="mdi:account"></iconify-icon>
+<span class="text-[10px] mt-0.5">我的</span>
+</a>
+</div>
+</div>
+<script>
+        // 登录检测
+        if(localStorage.getItem('campus_logged_in') !== 'true') {
+            document.getElementById('login-guide').classList.remove('hidden');
+        }
+        const coupons = [
+            { name: '新用户专享券', amount: 3, condition: '满5元可用', date: '2024.12.01 - 12.31', range: '全部跑腿服务', status: 'available' },
+            { name: '快递代取券', amount: 2, condition: '满3元可用', date: '2024.12.01 - 12.31', range: '快递代取', status: 'available' },
+            { name: '食堂代买券', amount: 1, condition: '无门槛', date: '2024.12.01 - 12.15', range: '食堂代买', status: 'available' },
+            { name: '周末特惠券', amount: 5, condition: '满10元可用', date: '周末可用', range: '全部跑腿服务', status: 'available' },
+            { name: '邀请好友券', amount: 4, condition: '满8元可用', date: '2024.12.01 - 2025.01.31', range: '全部跑腿服务', status: 'available' },
+            { name: '校园跑专属', amount: 2, condition: '满5元可用', date: '2024.12.01 - 12.20', range: '校园跑', status: 'available' },
+            { name: '双十一回馈券', amount: 10, condition: '满50元可用', date: '已过期', range: '全部', status: 'expired' },
+            { name: '开学大礼包', amount: 5, condition: '满20元可用', date: '2024.09.01', range: '全部', status: 'used' }
+        ];
+
+        function renderCoupons(status) {
+            const list = document.getElementById('coupon-list');
+            list.innerHTML = '';
+            
+            coupons.filter(c => c.status === status).forEach(c => {
+                const isInactive = status !== 'available';
+                const card = `
+                    <div class="bg-white flex rounded-xl overflow-hidden card-shadow h-[100px] ${isInactive ? 'opacity-70 grayscale' : ''}">
+                        <div class="w-2 bg-[#F59E0B] flex-none"></div>
+                        <div class="w-24 flex flex-col items-center justify-center border-r border-dashed border-gray-100 p-2">
+                            <div class="text-red-500 font-bold">
+                                <span class="text-sm">¥</span><span class="text-2xl">${c.amount}</span>
+                            </div>
+                            <span class="text-[10px] text-gray-400">${c.condition}</span>
+                        </div>
+                        <div class="flex-1 p-3 flex flex-col justify-between relative">
+                            <div>
+                                <h3 class="text-[14px] font-bold">${c.name}</h3>
+                                <p class="text-[10px] text-gray-400 mt-1">有效期：${c.date}</p>
+                                <p class="text-[10px] text-gray-400">适用：${c.range}</p>
+                            </div>
+                            ${status === 'available' ? 
+                                '<button class="absolute bottom-3 right-3 bg-main-blue text-white text-[10px] px-3 py-1 rounded-full">立即使用</button>' : 
+                                `<div class="absolute bottom-3 right-3 border border-gray-300 text-gray-400 text-[10px] px-3 py-1 rounded-full">${status === 'used' ? '已使用' : '已过期'}</div>`
+                            }
+                        </div>
+                    </div>
+                `;
+                list.innerHTML += card;
+            });
+
+            if (list.innerHTML === '') {
+                list.innerHTML = '<div class="flex flex-col items-center justify-center h-full text-gray-400 mt-20"><iconify-icon icon="mdi:ticket-outline" class="text-4xl mb-2"></iconify-icon><p class="text-[12px]">暂无优惠券</p></div>';
+            }
+        }
+
+        function switchTab(status) {
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => {
+                btn.className = 'flex-1 py-3 text-[14px] font-medium text-gray-400';
+            });
+            document.getElementById(`tab-${status}`).className = 'flex-1 py-3 text-[14px] font-medium tab-active';
+            renderCoupons(status);
+        }
+
+        let clicks = 0;
+        function activateDev() {
+            clicks++;
+            if(clicks >= 5) {
+                localStorage.setItem('campus_dev_mode', 'true');
+                alert('开发者模式已开启');
+                location.reload();
+            }
+        }
+
+        // 初始渲染
+        renderCoupons('available');
+    </script>
+</body>
+</html>

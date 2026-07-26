@@ -1,0 +1,87 @@
+{
+  "bsonType": "object",
+  "required": ["user_id", "nickname", "role"],
+  "permission": {
+    "read": "doc.user_id == auth.uid",
+    "create": "auth.uid != null",
+    "update": "doc.user_id == auth.uid",
+    "delete": "doc.user_id == auth.uid"
+  },
+  "properties": {
+    "_id": {
+      "description": "用户ID，系统自动生成"
+    },
+    "user_id": {
+      "bsonType": "string",
+      "description": "用户唯一标识",
+      "foreignKey": "uni-id-users._id"
+    },
+    "nickname": {
+      "bsonType": "string",
+      "description": "用户昵称",
+      "trim": "both"
+    },
+    "avatar": {
+      "bsonType": "string",
+      "description": "用户头像URL",
+      "defaultValue": ""
+    },
+    "phone": {
+      "bsonType": "string",
+      "description": "手机号",
+      "pattern": "^1[3-9]\\d{9}$"
+    },
+    "school": {
+      "bsonType": "string",
+      "description": "所在学校",
+      "defaultValue": ""
+    },
+    "student_id": {
+      "bsonType": "string",
+      "description": "学号",
+      "defaultValue": ""
+    },
+    "verified": {
+      "bsonType": "bool",
+      "description": "是否已实名认证",
+      "defaultValue": false
+    },
+    "role": {
+      "bsonType": "string",
+      "description": "角色：user/rider",
+      "enum": ["user", "rider"],
+      "defaultValue": "user"
+    },
+    "balance": {
+      "bsonType": "double",
+      "description": "账户余额",
+      "defaultValue": 100.00,
+      "minimum": 0
+    },
+    "order_count": {
+      "bsonType": "int",
+      "description": "完成订单数",
+      "defaultValue": 0
+    },
+    "total_orders": {
+      "bsonType": "int",
+      "description": "累计订单数",
+      "defaultValue": 0
+    },
+    "rating": {
+      "bsonType": "double",
+      "description": "平均评分",
+      "defaultValue": 5.0,
+      "minimum": 0,
+      "maximum": 5
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "updated_at": {
+      "bsonType": "timestamp",
+      "description": "更新时间"
+    }
+  }
+}

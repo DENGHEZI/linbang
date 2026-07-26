@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>发布跑腿 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .category-card.selected { border-color: #4A90D9; background-color: #f0f7ff; }
+        .step-item.active .step-dot { background-color: #4A90D9; border-color: #4A90D9; color: white; }
+        .step-item.active .step-text { color: #4A90D9; font-weight: bold; }
+        .step-item.completed .step-dot { background-color: #4ECDC4; border-color: #4ECDC4; color: white; }
+        .step-line { height: 2px; flex: 1; background-color: #E5E7EB; margin: 0 -8px; position: relative; top: 12px; z-index: 0; }
+        .step-line.active { background-color: #4A90D9; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部导航 -->
+<div class="bg-main-blue h-[52px] px-[14px] flex items-center flex-none">
+<button class="text-white text-xl" onclick="history.back()">
+<iconify-icon icon="mdi:arrow-left"></iconify-icon>
+</button>
+<h1 class="text-white font-bold text-[18px] flex-1 text-center pr-8">发布跑腿</h1>
+</div>
+<!-- 步骤条 - 优化设计 -->
+<div class="bg-white px-8 py-5 flex items-start justify-between border-b border-gray-50 flex-none relative">
+<div class="step-item active flex flex-col items-center z-10" id="step-1">
+<div class="step-dot w-6 h-6 rounded-full border-2 border-gray-200 bg-white flex items-center justify-center text-[12px] transition-colors">1</div>
+<span class="step-text text-[11px] mt-1.5 text-gray-400">选择类目</span>
+</div>
+<div class="step-line" id="line-1"></div>
+<div class="step-item flex flex-col items-center z-10" id="step-2">
+<div class="step-dot w-6 h-6 rounded-full border-2 border-gray-200 bg-white flex items-center justify-center text-[12px] transition-colors">2</div>
+<span class="step-text text-[11px] mt-1.5 text-gray-400">填写详情</span>
+</div>
+<div class="step-line" id="line-2"></div>
+<div class="step-item flex flex-col items-center z-10" id="step-3">
+<div class="step-dot w-6 h-6 rounded-full border-2 border-gray-200 bg-white flex items-center justify-center text-[12px] transition-colors">3</div>
+<span class="step-text text-[11px] mt-1.5 text-gray-400">确认发布</span>
+</div>
+</div>
+<!-- 内容区域 -->
+<div class="flex-1 overflow-y-auto hide-scrollbar pb-20">
+<!-- 步骤 1: 选择类目 -->
+<div class="p-4 space-y-3" id="step-content-1">
+<h3 class="text-[15px] font-bold text-gray-800 mb-2 px-1">请选择服务类目</h3>
+<div class="grid grid-cols-1 gap-3">
+<div class="category-card flex items-center p-4 bg-white rounded-xl border-2 border-transparent card-shadow active:scale-[0.98] transition-all" onclick="selectCategory('快递代取')">
+<div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mr-4">
+<iconify-icon class="text-2xl text-blue-500" icon="mdi:package-variant-closed"></iconify-icon>
+</div>
+<div class="flex-1">
+<p class="font-bold text-[14px]">快递代取</p>
+<p class="text-[11px] text-gray-400">代取快递、外卖、包裹</p>
+</div>
+<iconify-icon class="text-gray-300" icon="mdi:chevron-right"></iconify-icon>
+</div>
+<div class="category-card flex items-center p-4 bg-white rounded-xl border-2 border-transparent card-shadow active:scale-[0.98] transition-all" onclick="selectCategory('食堂代买')">
+<div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center mr-4">
+<iconify-icon class="text-2xl text-green-500" icon="mdi:food"></iconify-icon>
+</div>
+<div class="flex-1">
+<p class="font-bold text-[14px]">食堂代买</p>
+<p class="text-[11px] text-gray-400">食堂打饭、代买零食水果</p>
+</div>
+<iconify-icon class="text-gray-300" icon="mdi:chevron-right"></iconify-icon>
+</div>
+<div class="category-card flex items-center p-4 bg-white rounded-xl border-2 border-transparent card-shadow active:scale-[0.98] transition-all" onclick="selectCategory('代办事务')">
+<div class="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center mr-4">
+<iconify-icon class="text-2xl text-purple-500" icon="mdi:clipboard-text-outline"></iconify-icon>
+</div>
+<div class="flex-1">
+<p class="font-bold text-[14px]">代办事务</p>
+<p class="text-[11px] text-gray-400">打印资料、代交作业、排队</p>
+</div>
+<iconify-icon class="text-gray-300" icon="mdi:chevron-right"></iconify-icon>
+</div>
+<div class="category-card flex items-center p-4 bg-white rounded-xl border-2 border-transparent card-shadow active:scale-[0.98] transition-all" onclick="selectCategory('即时速递')">
+<div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center mr-4">
+<iconify-icon class="text-2xl text-indigo-500" icon="mdi:truck-delivery-outline"></iconify-icon>
+</div>
+<div class="flex-1">
+<p class="font-bold text-[14px]">即时速递</p>
+<p class="text-[11px] text-gray-400">校内文件、物品快传</p>
+</div>
+<iconify-icon class="text-gray-300" icon="mdi:chevron-right"></iconify-icon>
+</div>
+<div class="category-card flex items-center p-4 bg-white rounded-xl border-2 border-transparent card-shadow active:scale-[0.98] transition-all" onclick="selectCategory('其他')">
+<div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center mr-4">
+<iconify-icon class="text-2xl text-gray-500" icon="mdi:dots-horizontal"></iconify-icon>
+</div>
+<div class="flex-1">
+<p class="font-bold text-[14px]">其他</p>
+<p class="text-[11px] text-gray-400">无法分类的任务，请自定义</p>
+</div>
+<iconify-icon class="text-gray-300" icon="mdi:chevron-right"></iconify-icon>
+</div>
+</div>
+</div>
+<!-- 步骤 2: 填写详情 -->
+<div class="hidden p-4 space-y-4" id="step-content-2">
+<div class="bg-white rounded-xl p-4 card-shadow space-y-4">
+<div class="space-y-3">
+<div class="flex items-center space-x-3">
+<div class="w-2 h-2 rounded-full bg-main-blue"></div>
+<input class="flex-1 text-[14px] outline-none border-b border-gray-50 pb-2" id="pickup-addr" placeholder="哪里取 (如：中区食堂、圆通快递)" type="text"/>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-2 h-2 rounded-full bg-orange-400"></div>
+<input class="flex-1 text-[14px] outline-none border-b border-gray-50 pb-2" id="delivery-addr" placeholder="送到哪 (如：宿舍 A 栋 302)" type="text"/>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl p-4 card-shadow">
+<textarea class="w-full text-[13px] outline-none resize-none" id="order-desc" placeholder="详细描述您的需求 (如：取件码、帮买什么菜)..." rows="3"></textarea>
+</div>
+<div class="hidden space-y-4" id="custom-fields">
+<div class="bg-white rounded-xl p-4 card-shadow" id="other-content-field">
+<input class="w-full text-[14px] outline-none" id="other-content" placeholder="输入具体服务内容..." type="text"/>
+</div>
+<div class="bg-white rounded-xl p-4 card-shadow flex items-center justify-between" id="task-price-field">
+<span class="text-[14px] font-bold">跑腿酬劳</span>
+<div class="flex items-center bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">
+<span class="text-gray-400 mr-1 text-[12px]">¥</span>
+<input class="w-16 bg-transparent text-right outline-none font-bold text-main-blue" id="custom-price" oninput="calculateTotal()" placeholder="3-200" type="number"/>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl p-4 card-shadow flex justify-between items-center">
+<span class="text-[14px] font-bold text-gray-700">联系电话</span>
+<input class="text-right text-[14px] outline-none bg-transparent text-gray-500" id="user-phone" type="tel" value="138****8888"/>
+</div>
+</div>
+<!-- 步骤 3: 确认发布 -->
+<div class="hidden p-4 space-y-4" id="step-content-3">
+<div class="bg-white rounded-xl p-5 card-shadow space-y-4">
+<div class="flex justify-between items-start">
+<h3 class="text-[16px] font-bold text-gray-800" id="preview-category">快递代取</h3>
+<span class="bg-blue-50 text-main-blue text-[10px] px-2 py-0.5 rounded">详情预览</span>
+</div>
+<div class="space-y-3 py-3 border-y border-gray-50">
+<div class="flex items-start">
+<iconify-icon class="text-blue-400 mr-2 mt-0.5" icon="mdi:map-marker"></iconify-icon>
+<div class="flex-1">
+<p class="text-[11px] text-gray-400">配送路径</p>
+<p class="text-[13px]" id="preview-route">宿舍 A 栋 -&gt; 图书馆</p>
+</div>
+</div>
+<div class="flex items-start">
+<iconify-icon class="text-gray-400 mr-2 mt-0.5" icon="mdi:text-box-outline"></iconify-icon>
+<div class="flex-1">
+<p class="text-[11px] text-gray-400">任务需求</p>
+<p class="text-[13px] line-clamp-2" id="preview-desc">取圆通快递，取件码 3-4-502</p>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-[13px] text-gray-500">
+<span>基础跑腿费</span>
+<span id="display-base-fee">¥3.00</span>
+</div>
+<div class="flex justify-between text-[13px] text-gray-500">
+<span>平台服务费 (12%)</span>
+<span id="display-service-fee">¥0.36</span>
+</div>
+<div class="flex justify-between text-[13px] text-gray-500">
+<span>加小费</span>
+<span id="display-tip">¥0.00</span>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-gray-50 mt-2">
+<span class="text-[15px] font-bold text-gray-800">合计支付</span>
+<span class="text-[22px] font-bold text-main-blue" id="total-price">¥3.36</span>
+</div>
+</div>
+</div>
+<!-- 小费选择 -->
+<div class="bg-white rounded-xl p-4 card-shadow">
+<h4 class="text-[14px] font-bold mb-3 flex items-center">
+<iconify-icon class="text-yellow-500 mr-1" icon="mdi:lightning-bolt"></iconify-icon>
+                        加小费 (抢单更快)
+                    </h4>
+<div class="grid grid-cols-4 gap-2">
+<button class="tip-btn py-2 rounded-lg border border-gray-100 text-[12px] bg-gray-50" onclick="setTip(0)">不加</button>
+<button class="tip-btn py-2 rounded-lg border border-gray-100 text-[12px] bg-white" onclick="setTip(1)">¥1</button>
+<button class="tip-btn py-2 rounded-lg border border-gray-100 text-[12px] bg-white" onclick="setTip(2)">¥2</button>
+<button class="tip-btn py-2 rounded-lg border border-gray-100 text-[12px] bg-white" onclick="setTip(5)">¥5</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 底部按钮 -->
+<div class="hidden p-4 bg-white border-t border-gray-50 flex-none space-x-3 flex" id="bottom-actions">
+<button class="flex-1 py-3.5 bg-gray-100 text-gray-600 rounded-xl text-[16px] font-medium active:bg-gray-200" onclick="prevStep()">上一步</button>
+<button class="flex-[2] py-3.5 bg-main-blue text-white rounded-xl text-[16px] font-medium active:opacity-90" id="next-btn" onclick="nextStep()">下一步</button>
+</div>
+<div class="hidden p-4 bg-white border-t border-gray-50 flex-none" id="confirm-action">
+<button class="w-full py-3.5 bg-main-blue text-white rounded-xl text-[16px] font-bold shadow-lg shadow-blue-100" onclick="publishOrder()">确认支付并发布</button>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[52px] bg-white border-t border-gray-100 flex items-center justify-around z-[100]">
+<a class="flex flex-col items-center text-gray-400" href="./home.html">
+<iconify-icon class="text-[18px]" icon="mdi:home-variant-outline"></iconify-icon>
+<span class="text-[10px]">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[18px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px]">服务单</span>
+</a>
+<a class="w-[42px] h-[42px] bg-main-blue rounded-full flex items-center justify-center text-white shadow-lg -mt-6" href="./publish.html">
+<iconify-icon class="text-[20px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[18px]" icon="mdi:clipboard-text-outline"></iconify-icon>
+<span class="text-[10px]">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[18px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px]">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        let currentStep = 1;
+        let orderData = {
+            category: '',
+            tip: 0
+        };
+
+        function selectCategory(name) {
+            orderData.category = name;
+            document.querySelectorAll('.category-card').forEach(c => {
+                if (c.querySelector('p').innerText === name) {
+                    c.classList.add('selected');
+                } else {
+                    c.classList.remove('selected');
+                }
+            });
+            setTimeout(() => nextStep(), 300);
+        }
+
+        function updateSteps() {
+            document.getElementById('step-content-1').classList.toggle('hidden', currentStep !== 1);
+            document.getElementById('step-content-2').classList.toggle('hidden', currentStep !== 2);
+            document.getElementById('step-content-3').classList.toggle('hidden', currentStep !== 3);
+            document.getElementById('bottom-actions').classList.toggle('hidden', currentStep === 1 || currentStep === 3);
+            document.getElementById('confirm-action').classList.toggle('hidden', currentStep !== 3);
+
+            for (let i = 1; i <= 3; i++) {
+                const item = document.getElementById(`step-${i}`);
+                const dot = item.querySelector('.step-dot');
+                if (i < currentStep) {
+                    item.classList.remove('active');
+                    item.classList.add('completed');
+                    dot.innerHTML = '<iconify-icon icon="mdi:check"></iconify-icon>';
+                } else if (i === currentStep) {
+                    item.classList.remove('completed');
+                    item.classList.add('active');
+                    dot.innerHTML = i;
+                } else {
+                    item.classList.remove('active', 'completed');
+                    dot.innerHTML = i;
+                }
+                
+                if (i < 3) {
+                    const line = document.getElementById(`line-${i}`);
+                    line.classList.toggle('active', i < currentStep);
+                }
+            }
+
+            if (currentStep === 2) {
+                const customFields = document.getElementById('custom-fields');
+                customFields.classList.toggle('hidden', !['其他', '代办事务'].includes(orderData.category));
+                document.getElementById('other-content-field').classList.toggle('hidden', orderData.category !== '其他');
+                document.getElementById('task-price-field').classList.toggle('hidden', orderData.category !== '代办事务');
+            }
+
+            if (currentStep === 3) {
+                document.getElementById('preview-category').innerText = orderData.category;
+                document.getElementById('preview-route').innerText = `${document.getElementById('pickup-addr').value || '未填'} -> ${document.getElementById('delivery-addr').value || '未填'}`;
+                document.getElementById('preview-desc').innerText = document.getElementById('order-desc').value || '暂无描述';
+                calculateTotal();
+            }
+        }
+
+        function nextStep() {
+            if (currentStep === 1 && !orderData.category) {
+                showToast('请先选择类目');
+                return;
+            }
+            if (currentStep === 2) {
+                if (!document.getElementById('pickup-addr').value || !document.getElementById('delivery-addr').value) {
+                    showToast('请填写地址信息');
+                    return;
+                }
+            }
+            if (currentStep < 3) {
+                currentStep++;
+                updateSteps();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateSteps();
+            }
+        }
+
+        function setTip(val) {
+            orderData.tip = val;
+            document.querySelectorAll('.tip-btn').forEach(b => {
+                if (b.innerText === (val === 0 ? '不加' : '¥' + val)) {
+                    b.className = 'tip-btn py-2 rounded-lg border border-main-blue text-[12px] bg-main-blue text-white';
+                } else {
+                    b.className = 'tip-btn py-2 rounded-lg border border-gray-100 text-[12px] bg-white text-gray-600';
+                }
+            });
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let base = 3.00;
+            if (orderData.category === '代办事务') {
+                base = parseFloat(document.getElementById('custom-price').value) || 3.00;
+            }
+            const serviceFee = base * 0.12;
+            const total = base + serviceFee + orderData.tip;
+            
+            document.getElementById('display-base-fee').innerText = `¥${base.toFixed(2)}`;
+            document.getElementById('display-service-fee').innerText = `¥${serviceFee.toFixed(2)}`;
+            document.getElementById('display-tip').innerText = `¥${orderData.tip.toFixed(2)}`;
+            document.getElementById('total-price').innerText = `¥${total.toFixed(2)}`;
+        }
+
+        function publishOrder() {
+            showToast('支付处理中...');
+            setTimeout(() => {
+                showToast('发布成功，正在寻找骑手');
+                setTimeout(() => {
+                    window.location.href = './orders.html';
+                }, 1200);
+            }, 1000);
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 
+                'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);' +
+                'background:rgba(0,0,0,0.78);color:#fff;padding:12px 28px;' +
+                'border-radius:24px;font-size:14px;z-index:9999;white-space:nowrap;' +
+                'pointer-events:none;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() {
+                    if (toast.parentNode) toast.parentNode.removeChild(toast);
+                }, 300);
+            }, 1500);
+        }
+
+        setTip(0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>服务广场 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<link href="./common.css" rel="stylesheet"/>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .text-main-blue { color: #1E3A5F; }
+        .bg-main-blue { background-color: #1E3A5F; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .bottom-nav-active { color: #1E3A5F; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部导航 -->
+<div class="bg-main-gradient h-[140px] px-6 pt-12 pb-5 flex-none relative overflow-hidden">
+<div class="decor-circle-1"></div>
+<div class="decor-circle-2"></div>
+<div class="flex items-center justify-between mb-3 relative z-10">
+<div class="w-8"></div>
+<div class="flex items-center gap-2">
+<img alt="邻寝帮" class="brand-logo" src="./logo.jpg" style="width:28px;height:28px;border-radius:6px;background:#fff;padding:1px;"/>
+<h1 class="text-white text-[17px] font-extrabold">邻寝帮</h1>
+</div>
+<div class="w-8 flex justify-end">
+<iconify-icon class="text-[22px] text-white cursor-pointer" icon="mdi:magnify" onclick="toggleSearch()"></iconify-icon>
+</div>
+</div>
+<p class="text-white/90 text-[12px] text-center relative z-10">取快递、带三餐，邻寝帮随叫随到</p>
+</div>
+<!-- 内容区 -->
+<div class="flex-1 overflow-y-auto hide-scrollbar pb-20">
+<!-- 搜索栏 -->
+<div class="px-4 py-3 bg-white hidden" id="search-bar">
+<div class="bg-gray-100 rounded-lg px-3 py-2 flex items-center">
+<iconify-icon class="text-gray-400 mr-2" icon="mdi:magnify"></iconify-icon>
+<input class="bg-transparent border-none outline-none text-[14px] w-full" placeholder="搜索跑腿服务..." type="text"/>
+</div>
+</div>
+<!-- 筛选标签 -->
+<div class="px-4 py-3 flex overflow-x-auto hide-scrollbar gap-2 bg-white sticky top-0 z-10 border-b border-gray-50">
+<span class="px-4 py-1.5 bg-blue-50 text-main-blue rounded-full text-[13px] whitespace-nowrap font-medium">全部</span>
+<span class="px-4 py-1.5 bg-gray-50 text-gray-600 rounded-full text-[13px] whitespace-nowrap">校园跑</span>
+<span class="px-4 py-1.5 bg-gray-50 text-gray-600 rounded-full text-[13px] whitespace-nowrap">学习助手</span>
+<span class="px-4 py-1.5 bg-gray-50 text-gray-600 rounded-full text-[13px] whitespace-nowrap">代买代购</span>
+<span class="px-4 py-1.5 bg-gray-50 text-gray-600 rounded-full text-[13px] whitespace-nowrap">快递代取</span>
+<span class="px-4 py-1.5 bg-gray-50 text-gray-600 rounded-full text-[13px] whitespace-nowrap">代办事务</span>
+<span class="px-4 py-1.5 bg-gray-50 text-gray-600 rounded-full text-[13px] whitespace-nowrap">即时速递</span>
+</div>
+<!-- 服务列表 -->
+<div class="p-4 space-y-3" id="service-list">
+<!-- 卡片 1 -->
+<div class="bg-white p-4 rounded-xl card-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-main-blue font-bold text-xs mr-2">王</div>
+<div>
+<div class="text-[13px] font-medium">小王同学 <span class="text-yellow-500 text-[11px]">★4.9</span></div>
+</div>
+</div>
+<div class="text-red-500 font-bold text-lg">¥8</div>
+</div>
+<h3 class="text-[15px] font-bold mb-1">每晚操场代跑3公里</h3>
+<p class="text-[12px] text-gray-500 line-clamp-2 mb-2">每晚操场准时打卡，步数真实有效，可接各校区。</p>
+<div class="flex flex-wrap gap-1 mb-3">
+<span class="px-2 py-0.5 bg-blue-50 text-main-blue text-[10px] rounded">校园跑</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-gray-400 border-t pt-3">
+<div class="flex items-center space-x-3">
+<span>📍 操场</span>
+<span>⏱ 30分钟前发布</span>
+<span>📦 已接23单</span>
+</div>
+<button class="bg-main-blue text-white px-4 py-1.5 rounded-full text-[12px] font-medium" onclick="openOrderModal('每晚操场代跑3公里', 8)">立即下单</button>
+</div>
+</div>
+<!-- 卡片 2 -->
+<div class="bg-white p-4 rounded-xl card-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xs mr-2">李</div>
+<div>
+<div class="text-[13px] font-medium">小李同学 <span class="text-yellow-500 text-[11px]">★4.8</span></div>
+</div>
+</div>
+<div class="text-red-500 font-bold text-lg">¥3</div>
+</div>
+<h3 class="text-[15px] font-bold mb-1">菜鸟驿站代取快递</h3>
+<p class="text-[12px] text-gray-500 line-clamp-2 mb-2">顺路代取，大件小件均可，送到宿舍楼下。</p>
+<div class="flex flex-wrap gap-1 mb-3">
+<span class="px-2 py-0.5 bg-green-50 text-green-600 text-[10px] rounded">快递代取</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-gray-400 border-t pt-3">
+<div class="flex items-center space-x-3">
+<span>📍 菜鸟驿站</span>
+<span>⏱ 1小时前发布</span>
+<span>📦 已接56单</span>
+</div>
+<button class="bg-main-blue text-white px-4 py-1.5 rounded-full text-[12px] font-medium" onclick="openOrderModal('菜鸟驿站代取快递', 3)">立即下单</button>
+</div>
+</div>
+<!-- 卡片 3 -->
+<div class="bg-white p-4 rounded-xl card-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-xs mr-2">张</div>
+<div>
+<div class="text-[13px] font-medium">小张同学 <span class="text-yellow-500 text-[11px]">★4.9</span></div>
+</div>
+</div>
+<div class="text-red-500 font-bold text-lg">¥4</div>
+</div>
+<h3 class="text-[15px] font-bold mb-1">二食堂午餐代买配送</h3>
+<p class="text-[12px] text-gray-500 line-clamp-2 mb-2">二食堂各窗口均可，保证饭菜到手还是热的。</p>
+<div class="flex flex-wrap gap-1 mb-3">
+<span class="px-2 py-0.5 bg-orange-50 text-orange-600 text-[10px] rounded">代买代购</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-gray-400 border-t pt-3">
+<div class="flex items-center space-x-3">
+<span>📍 二食堂</span>
+<span>⏱ 2小时前发布</span>
+<span>📦 已接34单</span>
+</div>
+<button class="bg-main-blue text-white px-4 py-1.5 rounded-full text-[12px] font-medium" onclick="openOrderModal('二食堂午餐代买配送', 4)">立即下单</button>
+</div>
+</div>
+<!-- 卡片 4 -->
+<div class="bg-white p-4 rounded-xl card-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-xs mr-2">赵</div>
+<div>
+<div class="text-[13px] font-medium">小赵同学 <span class="text-yellow-500 text-[11px]">★4.7</span></div>
+</div>
+</div>
+<div class="text-red-500 font-bold text-lg">¥5</div>
+</div>
+<h3 class="text-[15px] font-bold mb-1">图书馆资料代取代还</h3>
+<p class="text-[12px] text-gray-500 line-clamp-2 mb-2">帮取书、还书，也可代占座，效率高。</p>
+<div class="flex flex-wrap gap-1 mb-3">
+<span class="px-2 py-0.5 bg-purple-50 text-purple-600 text-[10px] rounded">学习助手</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-gray-400 border-t pt-3">
+<div class="flex items-center space-x-3">
+<span>📍 图书馆</span>
+<span>⏱ 3小时前发布</span>
+<span>📦 已接18单</span>
+</div>
+<button class="bg-main-blue text-white px-4 py-1.5 rounded-full text-[12px] font-medium" onclick="openOrderModal('图书馆资料代取代还', 5)">立即下单</button>
+</div>
+</div>
+<!-- 卡片 5 -->
+<div class="bg-white p-4 rounded-xl card-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-xs mr-2">陈</div>
+<div>
+<div class="text-[13px] font-medium">小陈同学 <span class="text-yellow-500 text-[11px]">★4.8</span></div>
+</div>
+</div>
+<div class="text-red-500 font-bold text-lg">¥5</div>
+</div>
+<h3 class="text-[15px] font-bold mb-1">宿舍楼间急件互送</h3>
+<p class="text-[12px] text-gray-500 line-clamp-2 mb-2">10分钟内取件，全校宿舍楼均可送达。</p>
+<div class="flex flex-wrap gap-1 mb-3">
+<span class="px-2 py-0.5 bg-indigo-50 text-indigo-600 text-[10px] rounded">即时速递</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-gray-400 border-t pt-3">
+<div class="flex items-center space-x-3">
+<span>📍 全校</span>
+<span>⏱ 4小时前发布</span>
+<span>📦 已接41单</span>
+</div>
+<button class="bg-main-blue text-white px-4 py-1.5 rounded-full text-[12px] font-medium" onclick="openOrderModal('宿舍楼间急件互送', 5)">立即下单</button>
+</div>
+</div>
+<!-- 卡片 6 -->
+<div class="bg-white p-4 rounded-xl card-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600 font-bold text-xs mr-2">刘</div>
+<div>
+<div class="text-[13px] font-medium">小刘同学 <span class="text-yellow-500 text-[11px]">★4.6</span></div>
+</div>
+</div>
+<div class="text-red-500 font-bold text-lg">¥6</div>
+</div>
+<h3 class="text-[15px] font-bold mb-1">代排队代领证件</h3>
+<p class="text-[12px] text-gray-500 line-clamp-2 mb-2">行政楼各窗口代排队，代领各类证明材料。</p>
+<div class="flex flex-wrap gap-1 mb-3">
+<span class="px-2 py-0.5 bg-yellow-50 text-yellow-600 text-[10px] rounded">代办事务</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-gray-400 border-t pt-3">
+<div class="flex items-center space-x-3">
+<span>📍 行政楼</span>
+<span>⏱ 5小时前发布</span>
+<span>📦 已接15单</span>
+</div>
+<button class="bg-main-blue text-white px-4 py-1.5 rounded-full text-[12px] font-medium" onclick="openOrderModal('代排队代领证件', 6)">立即下单</button>
+</div>
+</div>
+<!-- 卡片 7 -->
+<div class="bg-white p-4 rounded-xl card-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-600 font-bold text-xs mr-2">周</div>
+<div>
+<div class="text-[13px] font-medium">小周同学 <span class="text-yellow-500 text-[11px]">★4.9</span></div>
+</div>
+</div>
+<div class="text-red-500 font-bold text-lg">¥5</div>
+</div>
+<h3 class="text-[15px] font-bold mb-1">晨跑打卡代跑</h3>
+<p class="text-[12px] text-gray-500 line-clamp-2 mb-2">早上6点-8点代跑打卡，信誉第一。</p>
+<div class="flex flex-wrap gap-1 mb-3">
+<span class="px-2 py-0.5 bg-pink-50 text-pink-600 text-[10px] rounded">校园跑</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-gray-400 border-t pt-3">
+<div class="flex items-center space-x-3">
+<span>📍 操场</span>
+<span>⏱ 6小时前发布</span>
+<span>📦 已接28单</span>
+</div>
+<button class="bg-main-blue text-white px-4 py-1.5 rounded-full text-[12px] font-medium" onclick="openOrderModal('晨跑打卡代跑', 5)">立即下单</button>
+</div>
+</div>
+<!-- 卡片 8 -->
+<div class="bg-white p-4 rounded-xl card-shadow">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-bold text-xs mr-2">吴</div>
+<div>
+<div class="text-[13px] font-medium">小吴同学 <span class="text-yellow-500 text-[11px]">★4.8</span></div>
+</div>
+</div>
+<div class="text-red-500 font-bold text-lg">¥10</div>
+</div>
+<h3 class="text-[15px] font-bold mb-1">代遛宠物30分钟</h3>
+<p class="text-[12px] text-gray-500 line-clamp-2 mb-2">喜欢小动物，有丰富遛狗经验，生活区周边。</p>
+<div class="flex flex-wrap gap-1 mb-3">
+<span class="px-2 py-0.5 bg-gray-50 text-gray-600 text-[10px] rounded">其他</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-gray-400 border-t pt-3">
+<div class="flex items-center space-x-3">
+<span>📍 生活区</span>
+<span>⏱ 8小时前发布</span>
+<span>📦 已接9单</span>
+</div>
+<button class="bg-main-blue text-white px-4 py-1.5 rounded-full text-[12px] font-medium" onclick="openOrderModal('代遛宠物30分钟', 10)">立即下单</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 确认下单弹窗 -->
+<div class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-6" id="order-modal">
+<div class="bg-white w-full rounded-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+<div class="p-6">
+<h3 class="text-[18px] font-bold mb-4 text-center">确认下单</h3>
+<div class="bg-gray-50 p-3 rounded-lg mb-4">
+<div class="flex justify-between text-[14px] mb-1">
+<span class="text-gray-500">服务内容</span>
+<span class="font-medium" id="modal-service-name"></span>
+</div>
+<div class="flex justify-between text-[14px]">
+<span class="text-gray-500">基础费用</span>
+<span class="text-red-500 font-bold" id="modal-service-price"></span>
+</div>
+<a class="flex justify-between text-[14px] mt-2" href="./coupons.html">
+<span class="text-gray-500">优惠券</span>
+<span class="text-main-blue">选择优惠券 &gt;</span>
+</a>
+</div>
+<div class="mb-4">
+<label class="block text-[13px] text-gray-500 mb-2">下单备注 (选填)</label>
+<textarea class="w-full bg-gray-50 border-none rounded-lg p-3 text-[14px] outline-none h-20 placeholder-gray-300" placeholder="有什么特殊要求可以写在这里..."></textarea>
+</div>
+<div class="flex justify-between items-center py-4 border-t border-gray-100 mb-4">
+<div class="flex flex-col">
+<span class="text-[14px] font-medium">合计费用</span>
+<span class="text-[10px] text-gray-400">含平台服务费 (12%)</span>
+</div>
+<span class="text-xl font-bold text-red-500" id="modal-total-price"></span>
+</div>
+<div class="flex space-x-3">
+<button class="flex-1 py-3 border border-gray-200 rounded-xl text-gray-600 font-medium" onclick="closeOrderModal()">取消</button>
+<button class="flex-1 py-3 bg-main-blue text-white rounded-xl font-medium shadow-lg shadow-blue-100" onclick="confirmOrder()">确认下单</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 底部导航 -->
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[58px] bg-white/95 backdrop-blur-md border-t border-gray-100 flex items-center justify-around z-[100] px-2">
+<a class="flex flex-col items-center text-gray-400" href="./home.html">
+<iconify-icon class="text-[20px]" icon="mdi:home-variant-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[20px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">服务单</span>
+</a>
+<a class="w-[46px] h-[46px] bg-main-gradient rounded-full flex items-center justify-center text-white shadow-lg -mt-7 border-[3px] border-[#F5F8FA]" href="./publish.html">
+<iconify-icon class="text-[24px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[20px]" icon="mdi:clipboard-text-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[20px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function toggleSearch() {
+            const searchBar = document.getElementById('search-bar');
+            searchBar.classList.toggle('hidden');
+        }
+
+        function openOrderModal(name, price) {
+            document.getElementById('modal-service-name').textContent = name;
+            document.getElementById('modal-service-price').textContent = '¥' + price;
+            const fee = price * 0.12;
+            document.getElementById('modal-total-price').textContent = '¥' + (price + fee).toFixed(2);
+            document.getElementById('order-modal').classList.remove('hidden');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
+
+        function confirmOrder() {
+            showToast('下单成功！正在跳转订单详情...');
+            setTimeout(() => {
+                window.location.href = './orders.html';
+            }, 1500);
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

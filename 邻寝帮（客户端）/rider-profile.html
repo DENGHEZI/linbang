@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>骑手中心 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<link href="./common.css" rel="stylesheet"/>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #1E3A5F; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; transition: opacity 0.3s; opacity: 0; pointer-events: none; z-index: 100; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 未登录状态 -->
+<div class="hidden flex-1 flex flex-col items-center justify-center px-6 text-center bg-white" id="rider-logged-out">
+<div class="w-20 h-20 bg-[#FFF7ED] rounded-full flex items-center justify-center mb-6 relative">
+<!-- CSS 绘制锁图标 - 优化 -->
+<div class="w-9 h-7 bg-[#F59E0B] rounded-md relative mt-2 shadow-sm">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 w-7 h-6 border-[3px] border-[#F59E0B] rounded-t-full border-b-0"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full"></div>
+<div class="absolute top-[60%] left-1/2 -translate-x-1/2 w-0.5 h-2 bg-white rounded-full"></div>
+</div>
+<!-- CSS 绘制钥匙图标 - 优化 -->
+<div class="absolute top-3.5 right-3 rotate-[35deg] drop-shadow-sm">
+<div class="w-7 h-1.5 bg-[#A78BFA] rounded-full relative">
+<div class="absolute -left-1.5 -top-1.5 w-4 h-4 border-[2.5px] border-[#A78BFA] rounded-full bg-[#FFF7ED]"></div>
+<div class="absolute right-1 top-1.5 w-1 h-1.5 bg-[#A78BFA] rounded-b-sm"></div>
+<div class="absolute right-2.5 top-1.5 w-1 h-1 bg-[#A78BFA] rounded-b-sm"></div>
+</div>
+</div>
+</div>
+<h2 class="text-[20px] font-bold text-[#1F2937] mb-2 tracking-tight">请先登录</h2>
+<p class="text-[14px] text-[#9CA3AF] mb-10">登录后即可使用全部功能</p>
+<a class="w-full max-w-[240px] py-3.5 bg-[#1E3A5F] text-white rounded-[10px] text-[16px] font-bold shadow-lg shadow-blue-100 transition-transform active:scale-95" href="./rider-login.html">前往骑手登录</a>
+<p class="mt-8 text-[14px] text-[#9CA3AF]">
+                还没有骑手账号？<a class="text-[#1E3A5F] font-medium" href="javascript:void(0)">申请成为骑手</a>
+</p>
+</div>
+<!-- 已登录状态 -->
+<div class="hidden flex-1 flex flex-col overflow-hidden" id="rider-logged-in">
+<!-- 个人信息区 - 缩小高度 -->
+<div class="bg-main-gradient px-[14px] pt-12 pb-7 rounded-b-[32px] flex-none relative overflow-hidden">
+<div class="decor-circle-1"></div>
+<div class="decor-circle-2"></div>
+<div class="flex items-center mb-5 relative z-10">
+<div class="w-14 h-14 rounded-full border-2 border-white/40 overflow-hidden bg-white/20 mr-3 flex items-center justify-center text-white text-2xl font-extrabold">王</div>
+<div class="flex-1">
+<div class="flex items-center">
+<h2 class="text-[18px] font-bold text-white">小王同学</h2>
+<span class="ml-2 bg-[#FCD34D] text-[#1E3A5F] text-[10px] font-bold px-2 py-0.5 rounded-full">准时宝</span>
+</div>
+<p class="text-white/80 text-[12px] mt-0.5">骑手等级：黄金骑手</p>
+</div>
+</div>
+<!-- 统计卡片 - 缩小字号 -->
+<div class="bg-white rounded-xl p-[14px] flex justify-around card-shadow relative z-10">
+<div class="text-center">
+<p class="text-[18px] font-extrabold text-[#1E3A5F]">1,250</p>
+<p class="text-[11px] text-gray-500">累计单数</p>
+</div>
+<div class="w-[1px] h-8 bg-gray-100 self-center"></div>
+<div class="text-center">
+<p class="text-[18px] font-extrabold text-[#1E3A5F]">¥4.8K</p>
+<p class="text-[11px] text-gray-500">累计收益</p>
+</div>
+<div class="w-[1px] h-8 bg-gray-100 self-center"></div>
+<div class="text-center">
+<p class="text-[18px] font-extrabold text-[#F59E0B]">99.9%</p>
+<p class="text-[11px] text-gray-500">好评率</p>
+</div>
+</div>
+</div>
+<!-- 功能列表 - 精简 -->
+<div class="flex-1 overflow-y-auto hide-scrollbar px-[14px] py-4 space-y-[10px]">
+<!-- 认证区 - 缩小 -->
+<div class="bg-white rounded-xl p-[14px] card-shadow mb-[10px]">
+<h3 class="text-[14px] font-medium mb-3">资质认证</h3>
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-gray-50 p-2 rounded-lg flex items-center">
+<iconify-icon class="text-green-500 mr-2" icon="mdi:account-check-outline"></iconify-icon>
+<span class="text-[12px]">实名认证</span>
+</div>
+<div class="bg-gray-50 p-2 rounded-lg flex items-center">
+<iconify-icon class="text-green-500 mr-2" icon="mdi:school-outline"></iconify-icon>
+<span class="text-[12px]">学生认证</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl card-shadow overflow-hidden">
+<a class="flex items-center p-[14px] active:bg-gray-50 border-b border-gray-50" href="./rider-earnings.html">
+<iconify-icon class="text-lg text-orange-400 mr-3" icon="mdi:cash-multiple"></iconify-icon>
+<span class="text-[14px] flex-1">收益统计</span>
+<iconify-icon class="text-gray-300" icon="mdi:chevron-right"></iconify-icon>
+</a>
+<a class="flex items-center p-[14px] active:bg-gray-50 border-b border-gray-50" href="javascript:void(0)" onclick="showToast('接单记录正在加载')">
+<iconify-icon class="text-lg text-blue-400 mr-3" icon="mdi:clipboard-list-outline"></iconify-icon>
+<span class="text-[14px] flex-1">接单记录</span>
+<iconify-icon class="text-gray-300" icon="mdi:chevron-right"></iconify-icon>
+</a>
+<a class="flex items-center p-[14px] active:bg-gray-50 border-b border-gray-50" href="./home.html">
+<iconify-icon class="text-lg text-main-blue mr-3" icon="mdi:account-switch-outline"></iconify-icon>
+<span class="text-[14px] flex-1">切换到学生端</span>
+<iconify-icon class="text-gray-300" icon="mdi:chevron-right"></iconify-icon>
+</a>
+<a class="flex items-center p-[14px] active:bg-gray-50" href="javascript:void(0)" onclick="showToast('帮助中心正在建设中')">
+<iconify-icon class="text-lg text-gray-400 mr-3" icon="mdi:help-circle-outline"></iconify-icon>
+<span class="text-[14px] flex-1">帮助中心</span>
+<iconify-icon class="text-gray-300" icon="mdi:chevron-right"></iconify-icon>
+</a>
+
+</div>
+<button class="w-full text-red-500 text-[14px] font-medium py-4" onclick="doRiderLogout()">退出骑手账号</button>
+</div>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[58px] bg-white/95 backdrop-blur-md border-t border-gray-100 flex items-center justify-around z-[100] px-2">
+<a class="flex flex-col items-center text-gray-400" href="./home.html">
+<iconify-icon class="text-[20px]" icon="mdi:home-variant-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[20px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">服务单</span>
+</a>
+<a class="w-[46px] h-[46px] bg-main-gradient rounded-full flex items-center justify-center text-white shadow-lg -mt-7 border-[3px] border-[#F5F8FA]" href="./publish.html">
+<iconify-icon class="text-[24px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[20px]" icon="mdi:clipboard-text-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[20px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">我的</span>
+</a>
+</nav>
+<div class="toast" id="toast"></div>
+</div>
+<script>
+        (function() {
+            const isLoggedIn = localStorage.getItem('campus_rider_logged_in') === 'true';
+            document.getElementById('rider-logged-out').classList.toggle('hidden', isLoggedIn);
+            document.getElementById('rider-logged-in').classList.toggle('hidden', !isLoggedIn);
+        })();
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+
+        function doRiderLogout() {
+            localStorage.removeItem('campus_rider_logged_in');
+            localStorage.removeItem('campus_rider_name');
+            localStorage.removeItem('campus_rider_phone');
+            showToast('已退出骑手账号');
+            setTimeout(() => {
+                location.reload();
+            }, 500);
+        }
+    </script>
+</body>
+</html>

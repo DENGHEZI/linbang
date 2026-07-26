@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>我的订单 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .tab-active { color: #4A90D9; border-bottom: 2px solid #4A90D9; font-weight: bold; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部导航 -->
+<div class="bg-main-blue h-[52px] flex items-center flex-none">
+<h1 class="text-white font-bold text-[18px] w-full text-center">我的订单</h1>
+</div>
+<!-- Tab 切换 - 缩小 -->
+<div class="bg-white flex-none flex border-b border-gray-50">
+<button class="flex-1 py-3 text-[14px] text-center tab-active">全部</button>
+<button class="flex-1 py-3 text-[14px] text-center text-gray-400">进行中</button>
+<button class="flex-1 py-3 text-[14px] text-center text-gray-400">已完成</button>
+<button class="flex-1 py-3 text-[14px] text-center text-gray-400">待评价</button>
+</div>
+<!-- 订单列表 - 精简卡片 -->
+<div class="flex-1 overflow-y-auto px-[14px] py-4 hide-scrollbar pb-20">
+<!-- 订单卡片 1 -->
+<div class="bg-white rounded-xl p-[14px] mb-[16px] card-shadow">
+<div class="flex justify-between items-center mb-3">
+<div class="flex items-center gap-2">
+<span class="text-[12px] font-medium text-gray-400">快递代取</span>
+<span class="text-[11px] text-gray-300">07-23 12:45</span>
+</div>
+<span class="text-[12px] text-[#4A90D9] font-medium">配送中</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h4 class="text-[16px] font-medium">菜鸟驿站 → 12号楼</h4>
+<p class="text-[12px] text-gray-400 mt-1">骑手: 小王同学</p>
+</div>
+<div class="text-right">
+<span class="text-[16px] font-bold">¥5.00</span>
+</div>
+</div>
+<div class="flex justify-end gap-2 mt-4 pt-3 border-t border-gray-50">
+<button class="px-3 py-1.5 border border-gray-200 text-[12px] text-gray-600 rounded-lg">详情</button>
+<button class="px-3 py-1.5 bg-main-blue text-white text-[12px] rounded-lg font-medium">追踪</button>
+</div>
+</div>
+<!-- 订单卡片 2 -->
+<div class="bg-white rounded-xl p-[14px] mb-[16px] card-shadow">
+<div class="flex justify-between items-center mb-3">
+<div class="flex items-center gap-2">
+<span class="text-[12px] font-medium text-gray-400">食堂代买</span>
+<span class="text-[11px] text-gray-300">07-23 11:20</span>
+</div>
+<span class="text-[12px] text-[#4ECDC4] font-medium">已完成</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h4 class="text-[16px] font-medium">二饭 → 5号楼302</h4>
+<p class="text-[12px] text-gray-400 mt-1">骑手: 张小凡</p>
+</div>
+<div class="text-right">
+<span class="text-[16px] font-bold">¥3.00</span>
+</div>
+</div>
+<div class="flex justify-end gap-2 mt-4 pt-3 border-t border-gray-50">
+<button class="px-3 py-1.5 border border-gray-200 text-[12px] text-gray-600 rounded-lg">评价</button>
+<button class="px-3 py-1.5 border border-gray-200 text-[12px] text-gray-600 rounded-lg">再来一单</button>
+</div>
+</div>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[52px] bg-white border-t border-gray-100 flex items-center justify-around z-[100]">
+<a class="flex flex-col items-center text-gray-400" href="./home.html">
+<iconify-icon class="text-[18px]" icon="mdi:home-variant-outline"></iconify-icon>
+<span class="text-[10px]">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[18px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px]">服务单</span>
+</a>
+<a class="w-[42px] h-[42px] bg-main-blue rounded-full flex items-center justify-center text-white shadow-lg -mt-6" href="./publish.html">
+<iconify-icon class="text-[20px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-main-blue font-bold" href="./orders.html">
+<iconify-icon class="text-[18px]" icon="mdi:clipboard-text"></iconify-icon>
+<span class="text-[10px]">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[18px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px]">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
+<iconify-icon class="text-[18px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px]">我的</span>
+
+
+
+
+

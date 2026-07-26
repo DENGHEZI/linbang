@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>接单表 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<div class="bg-main-blue h-[52px] flex items-center px-[14px] flex-none">
+<button class="text-white text-xl" onclick="history.back()">
+<iconify-icon icon="mdi:arrow-left"></iconify-icon>
+</button>
+<h1 class="text-white font-bold text-[18px] flex-1 text-center pr-8">接单数据表</h1>
+</div>
+<div class="flex-1 overflow-auto hide-scrollbar pb-24">
+<table class="w-full text-[12px] text-left">
+<thead class="bg-gray-50 text-gray-400 sticky top-0">
+<tr>
+<th class="px-3 py-3 font-medium">编号</th>
+<th class="px-3 py-3 font-medium">类目</th>
+<th class="px-3 py-3 font-medium text-right">金额</th>
+<th class="px-3 py-3 font-medium text-right">抽成</th>
+<th class="px-3 py-3 font-medium text-right">状态</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-50 bg-white">
+<tr onclick="showToast('订单详情 #001')">
+<td class="px-3 py-3">...001</td>
+<td class="px-3 py-3">快递</td>
+<td class="px-3 py-3 text-right font-medium">¥5.00</td>
+<td class="px-3 py-3 text-right text-orange-400">¥0.60</td>
+<td class="px-3 py-3 text-right text-blue-400">进行中</td>
+</tr>
+<tr onclick="showToast('订单详情 #005')">
+<td class="px-3 py-3">...005</td>
+<td class="px-3 py-3">食堂</td>
+<td class="px-3 py-3 text-right font-medium">¥3.00</td>
+<td class="px-3 py-3 text-right text-orange-400">¥0.36</td>
+<td class="px-3 py-3 text-right text-green-400">已完成</td>
+</tr>
+<!-- More rows... -->
+</tbody>
+</table>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[52px] bg-white border-t border-gray-100 flex items-center justify-around z-[100]">
+<a class="flex flex-col items-center text-main-blue" href="./home.html">
+<iconify-icon class="text-[18px]" icon="mdi:home-variant"></iconify-icon>
+<span class="text-[10px]">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[18px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px]">服务单</span>
+</a>
+<a class="w-[42px] h-[42px] bg-main-blue rounded-full flex items-center justify-center text-white shadow-lg -mt-6" href="./publish.html">
+<iconify-icon class="text-[20px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[18px]" icon="mdi:clipboard-text-outline"></iconify-icon>
+<span class="text-[10px]">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[18px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px]">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

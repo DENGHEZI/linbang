@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>骑手登录 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<link href="./common.css" rel="stylesheet"/>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #1E3A5F; }
+        .text-main-blue { color: #1E3A5F; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .tab-active { color: #1E3A5F; border-bottom: 2px solid #1E3A5F; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部品牌区 -->
+<div class="bg-main-gradient h-[300px] flex-none flex flex-col items-center justify-center text-white relative overflow-hidden">
+<div class="decor-circle-1"></div>
+<div class="decor-circle-2"></div>
+<div class="decor-circle-3"></div>
+<div class="bg-white p-2 rounded-[24px] mb-4 relative z-10" style="box-shadow: 0 12px 32px rgba(0,0,0,0.18);">
+<img alt="邻寝帮" class="brand-logo" src="./logo.jpg" style="width:84px;height:84px;border-radius:18px;"/>
+</div>
+<h1 class="text-[22px] font-extrabold tracking-wide relative z-10">骑手端 · 邻寝帮</h1>
+<p class="text-[13px] text-white/85 text-center mt-2 relative z-10 px-8">校园骑手专属登录入口</p>
+</div>
+<!-- 登录内容区 -->
+<div class="flex-1 px-[14px] -mt-10 relative z-20">
+<div class="bg-white rounded-2xl card-shadow overflow-hidden border border-white">
+<div class="flex border-b border-gray-50">
+<button class="flex-1 py-4 text-[14px] font-bold tab-active" id="tab-code" onclick="switchTab('code')">验证码登录</button>
+<button class="flex-1 py-4 text-[14px] font-medium text-gray-400" id="tab-pwd" onclick="switchTab('pwd')">账号登录</button>
+</div>
+<div class="p-5 space-y-4">
+<button class="w-full bg-orange-50 border border-orange-100 text-orange-600 py-3 rounded-xl text-[13px] font-bold flex items-center justify-center gap-2 active:scale-[0.98]" onclick="demoLogin()">
+<iconify-icon class="text-lg" icon="mdi:bike-fast"></iconify-icon>
+                        骑手体验模式 - 快速进入
+                    </button>
+<div class="space-y-3" id="form-code">
+<div class="bg-gray-50 rounded-xl px-4 py-3.5 flex items-center">
+<span class="text-gray-400 text-[14px] mr-3 border-r pr-3">+86</span>
+<input class="bg-transparent outline-none text-[14px] w-full" id="phone-code" maxlength="11" placeholder="骑手手机号" type="tel"/>
+</div>
+<div class="flex gap-2">
+<div class="flex-1 bg-gray-50 rounded-xl px-4 py-3.5">
+<input class="bg-transparent outline-none text-[14px] w-full" id="verify-code" placeholder="验证码" type="number"/>
+</div>
+<button class="text-main-blue text-[13px] font-bold px-3" onclick="getCode(this)">获取验证码</button>
+</div>
+<button class="w-full bg-main-blue text-white py-3.5 rounded-xl text-[16px] font-bold mt-2 shadow-lg shadow-blue-100" onclick="handleLogin('code')">骑手登录</button>
+</div>
+<div class="hidden space-y-3" id="form-pwd">
+<div class="bg-gray-50 rounded-xl px-4 py-3.5 flex items-center">
+<iconify-icon class="text-gray-400 text-xl mr-3" icon="mdi:account-outline"></iconify-icon>
+<input class="bg-transparent outline-none text-[14px] w-full" id="phone-pwd" placeholder="骑手账号" type="text"/>
+</div>
+<div class="bg-gray-50 rounded-xl px-4 py-3.5 flex items-center">
+<iconify-icon class="text-gray-400 text-xl mr-3" icon="mdi:lock-outline"></iconify-icon>
+<input class="bg-transparent outline-none text-[14px] w-full" id="password" placeholder="密码" type="password"/>
+</div>
+<button class="w-full bg-main-blue text-white py-3.5 rounded-xl text-[16px] font-bold mt-2 shadow-lg shadow-blue-100" onclick="handleLogin('pwd')">骑手登录</button>
+</div>
+<p class="text-center text-[11px] text-gray-400 mt-2">
+                        登录即代表您已同意 <a class="text-main-blue" href="javascript:void(0)">《骑手合作协议》</a>
+</p>
+</div>
+</div>
+<div class="mt-8 text-center">
+<a class="text-main-blue text-[14px] font-bold" href="javascript:void(0)" onclick="showToast('请联系校园大使申请成为骑手')">成为骑手 &gt;</a>
+</div>
+</div>
+<div class="p-6 text-center">
+<a class="text-[13px] text-gray-400 flex items-center justify-center" href="./login.html">
+<iconify-icon class="mr-2 text-lg" icon="mdi:account"></iconify-icon>
+                切换到用户端 <iconify-icon class="ml-1" icon="mdi:chevron-right"></iconify-icon>
+</a>
+</div>
+</div>
+<script>
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 
+                'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);' +
+                'background:rgba(0,0,0,0.78);color:#fff;padding:12px 28px;' +
+                'border-radius:24px;font-size:14px;z-index:9999;white-space:nowrap;' +
+                'pointer-events:none;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() {
+                    if (toast.parentNode) toast.parentNode.removeChild(toast);
+                }, 300);
+            }, 1500);
+        }
+
+        function switchTab(type) {
+            document.getElementById('tab-code').className = `flex-1 py-4 text-[14px] ${type === 'code' ? 'tab-active font-bold' : 'text-gray-400 font-medium'}`;
+            document.getElementById('tab-pwd').className = `flex-1 py-4 text-[14px] ${type === 'pwd' ? 'tab-active font-bold' : 'text-gray-400 font-medium'}`;
+            document.getElementById('form-code').classList.toggle('hidden', type !== 'code');
+            document.getElementById('form-pwd').classList.toggle('hidden', type !== 'pwd');
+        }
+
+        function getCode(btn) {
+            showToast('验证码已发送至骑手手机');
+            btn.disabled = true;
+            setTimeout(() => btn.disabled = false, 10000);
+        }
+
+        function demoLogin() {
+            localStorage.setItem('campus_rider_logged_in', 'true');
+            showToast('骑手工作台登录成功');
+            setTimeout(() => location.href = './rider-hall.html', 1200);
+        }
+
+        function handleLogin(type) {
+            demoLogin();
+        }
+    </script>
+</body>
+</html>

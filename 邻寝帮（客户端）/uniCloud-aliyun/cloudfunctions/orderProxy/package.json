@@ -1,0 +1,7 @@
+{
+  "name": "orderProxy",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

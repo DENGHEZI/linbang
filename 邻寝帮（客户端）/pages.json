@@ -1,0 +1,232 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "邻寝帮"
+			}
+		},
+		{
+			"path": "pages/services/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "服务广场"
+			}
+		},
+		{
+			"path": "pages/orders/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "我的订单"
+			}
+		},
+		{
+			"path": "pages/profile/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
+			"path": "pages/publish/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "发布跑腿"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/order-success/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "下单成功"
+			}
+		},
+		{
+			"path": "pages/refund/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "售后评价"
+			}
+		},
+		{
+			"path": "pages/verify/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "实名认证"
+			}
+		},
+		{
+			"path": "pages/wallet/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "我的钱包"
+			}
+		},
+		{
+			"path": "pages/recharge/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "账户充值"
+			}
+		},
+		{
+			"path": "pages/add-bank-card/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "添加银行卡"
+			}
+		},
+		{
+			"path": "pages/bank-cards/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "我的银行卡"
+			}
+		},
+		{
+			"path": "pages/notifications/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "消息通知"
+			}
+		},
+		{
+			"path": "pages/coupons/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "优惠券中心"
+			}
+		},
+		{
+			"path": "pages/address/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "收货地址"
+			}
+		},
+		{
+			"path": "pages/customer-service/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "客服中心"
+			}
+		},
+		{
+			"path": "pages/register/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/dashboard/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "数据概览"
+			}
+		},
+		{
+			"path": "pages/order-table/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "接单数据表"
+			}
+		},
+		{
+			"path": "pages/rate/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "服务评价"
+			}
+		},
+		{
+			"path": "pages/ai-service/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "AI智能客服"
+			}
+		},
+		{
+			"path": "pages/admin/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "审核管理"
+			}
+		},
+		{
+			"path": "pages/rider-login/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "骑手登录"
+			}
+		},
+		{
+			"path": "pages/rider-home/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "骑手工作台"
+			}
+		},
+		{
+			"path": "pages/pay/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "订单支付"
+			}
+		},
+		{
+			"path": "pages/scan-result/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "上传凭证"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "邻寝帮",
+		"navigationBarBackgroundColor": "#F5F8FA",
+		"backgroundColor": "#F5F8FA"
+	},
+	"tabBar": {
+		"custom": true,
+		"color": "#9CA3AF",
+		"selectedColor": "#4A90D9",
+		"backgroundColor": "#FFFFFF",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239CA3AF'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E",
+				"selectedIconPath": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A90D9'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E"
+			},
+			{
+				"pagePath": "pages/services/index",
+				"text": "服务单",
+				"iconPath": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239CA3AF'%3E%3Cpath d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0020 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E",
+				"selectedIconPath": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A90D9'%3E%3Cpath d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0020 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E"
+			},
+			{
+				"pagePath": "pages/orders/index",
+				"text": "订单",
+				"iconPath": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239CA3AF'%3E%3Cpath d='M14 2H6c-1.1 0-1.99.9-1.99 2L4 22l4-4h10c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'/%3E%3C/svg%3E",
+				"selectedIconPath": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A90D9'%3E%3Cpath d='M14 2H6c-1.1 0-1.99.9-1.99 2L4 22l4-4h10c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'/%3E%3C/svg%3E"
+			},
+			{
+				"pagePath": "pages/profile/index",
+				"text": "我的",
+				"iconPath": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239CA3AF'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E",
+				"selectedIconPath": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A90D9'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}

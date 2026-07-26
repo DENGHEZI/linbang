@@ -1,0 +1,56 @@
+{
+  "bsonType": "object",
+  "required": ["user_id", "bank_code", "bank_name", "card_number", "card_holder", "last4"],
+  "permission": {
+    "read": "doc.user_id == auth.uid",
+    "create": "auth.uid != null",
+    "update": "doc.user_id == auth.uid",
+    "delete": "doc.user_id == auth.uid"
+  },
+  "properties": {
+    "_id": {
+      "description": "银行卡ID，系统自动生成"
+    },
+    "user_id": {
+      "bsonType": "string",
+      "description": "所属用户ID",
+      "foreignKey": "user-profile.user_id"
+    },
+    "bank_code": {
+      "bsonType": "string",
+      "description": "银行编码：CMB=招商银行, CCB=建设银行, BOC=中国银行",
+      "enum": ["CMB", "CCB", "BOC"]
+    },
+    "bank_name": {
+      "bsonType": "string",
+      "description": "银行名称"
+    },
+    "card_number": {
+      "bsonType": "string",
+      "description": "脱敏后的银行卡号",
+      "pattern": "^\\d{4}\\s\\*\\*\\*\\*\\s\\*\\*\\*\\*\\s\\d{4}$"
+    },
+    "card_holder": {
+      "bsonType": "string",
+      "description": "持卡人姓名"
+    },
+    "last4": {
+      "bsonType": "string",
+      "description": "银行卡后四位",
+      "pattern": "^\\d{4}$"
+    },
+    "is_default": {
+      "bsonType": "bool",
+      "description": "是否为默认卡",
+      "defaultValue": false
+    },
+    "created_at": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "updated_at": {
+      "bsonType": "timestamp",
+      "description": "更新时间"
+    }
+  }
+}

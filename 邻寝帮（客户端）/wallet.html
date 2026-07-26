@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>我的钱包 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<link href="./common.css" rel="stylesheet"/>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #1E3A5F; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部导航 -->
+<div class="bg-main-gradient h-[60px] px-[14px] pt-4 flex items-center flex-none relative overflow-hidden">
+<div class="decor-circle-1" style="width:100px;height:100px;top:-30px;right:-20px;"></div>
+<button class="text-white text-xl relative z-10" onclick="history.back()">
+<iconify-icon icon="mdi:arrow-left"></iconify-icon>
+</button>
+<h1 class="text-white font-bold text-[17px] flex-1 text-center pr-6 relative z-10">我的钱包</h1>
+</div>
+<div class="flex-1 overflow-y-auto hide-scrollbar pb-24">
+<!-- 余额卡片 - 高度缩小 -->
+<div class="m-[14px] bg-main-gradient rounded-2xl p-[20px] text-white card-shadow-lg relative overflow-hidden" style="box-shadow: 0 10px 30px rgba(30, 58, 95, 0.25);">
+<div class="decor-circle-1"></div>
+<div class="decor-circle-2"></div>
+<p class="text-white/80 text-[12px] mb-1 relative z-10">可用余额 (元)</p>
+<h2 class="text-[36px] font-extrabold mb-4 relative z-10 tracking-tight">128.50</h2>
+<div class="flex gap-2 relative z-10">
+<button class="flex-1 bg-white text-[#1E3A5F] py-2.5 rounded-xl text-[14px] font-bold active:scale-95 transition-transform" onclick="showToast('充值功能暂未开放')">充值</button>
+<button class="flex-1 bg-white/20 border border-white/30 text-white py-2.5 rounded-xl text-[14px] font-bold active:scale-95 transition-transform" onclick="showToast('提现功能暂未开放')">提现</button>
+</div>
+</div>
+<!-- 交易记录 - 单行精简 -->
+<div class="bg-white rounded-t-2xl px-[14px] py-4 min-h-full">
+<h3 class="text-[16px] font-medium mb-4">收支明细</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center" onclick="showToast('查看详情')">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center">
+<iconify-icon class="text-main-blue" icon="mdi:package-variant"></iconify-icon>
+</div>
+<div>
+<p class="text-[14px]">跑腿费支出 - 快递代取</p>
+<p class="text-[11px] text-gray-300">今天 12:45</p>
+</div>
+</div>
+<span class="text-[14px] font-medium">-5.00</span>
+</div>
+<div class="flex justify-between items-center" onclick="showToast('查看详情')">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center">
+<iconify-icon class="text-[#4ECDC4]" icon="mdi:wallet-plus-outline"></iconify-icon>
+</div>
+<div>
+<p class="text-[14px]">充值成功</p>
+<p class="text-[11px] text-gray-300">昨天 18:20</p>
+</div>
+</div>
+<span class="text-[14px] font-medium text-main-blue">+100.00</span>
+</div>
+<div class="flex justify-between items-center" onclick="showToast('查看详情')">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center">
+<iconify-icon class="text-main-blue" icon="mdi:food"></iconify-icon>
+</div>
+<div>
+<p class="text-[14px]">跑腿费支出 - 食堂代买</p>
+<p class="text-[11px] text-gray-300">07-22 12:10</p>
+</div>
+</div>
+<span class="text-[14px] font-medium">-3.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[58px] bg-white/95 backdrop-blur-md border-t border-gray-100 flex items-center justify-around z-[100] px-2">
+<a class="flex flex-col items-center text-gray-400" href="./home.html">
+<iconify-icon class="text-[20px]" icon="mdi:home-variant-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[20px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">服务单</span>
+</a>
+<a class="w-[46px] h-[46px] bg-main-gradient rounded-full flex items-center justify-center text-white shadow-lg -mt-7 border-[3px] border-[#F5F8FA]" href="./publish.html">
+<iconify-icon class="text-[24px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[20px]" icon="mdi:clipboard-text-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[20px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

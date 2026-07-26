@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>收益明细 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<link href="./common.css" rel="stylesheet"/>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #1E3A5F; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部导航 -->
+<div class="bg-main-gradient h-[60px] pt-4 flex items-center flex-none relative overflow-hidden px-[14px]">
+<div class="decor-circle-1" style="width:100px;height:100px;top:-30px;right:-20px;"></div>
+<button class="text-white text-xl relative z-10" onclick="history.back()">
+<iconify-icon icon="mdi:arrow-left"></iconify-icon>
+</button>
+<h1 class="text-white font-bold text-[17px] flex-1 text-center pr-6 relative z-10">收益明细</h1>
+</div>
+<div class="flex-1 overflow-y-auto px-[14px] py-4 hide-scrollbar pb-20">
+<!-- 收益展示 - 缩小 -->
+<div class="bg-main-gradient rounded-2xl p-[20px] text-white relative overflow-hidden mb-[16px]" style="box-shadow: 0 10px 30px rgba(30, 58, 95, 0.25);">
+<div class="decor-circle-1"></div>
+<div class="decor-circle-2"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<p class="text-white/80 text-[11px]">今日预估收益 (元)</p>
+<h2 class="text-[30px] font-extrabold mt-0.5">¥56.50</h2>
+</div>
+<div class="text-right">
+<p class="text-white/80 text-[11px]">本月收益</p>
+<p class="text-[15px] font-bold text-[#FCD34D] mt-0.5">¥1,248.50</p>
+</div>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-white/20 relative z-10">
+<div>
+<p class="text-white/80 text-[11px]">可提现余额</p>
+<p class="text-white text-[20px] font-extrabold">¥892.00</p>
+</div>
+<button class="bg-white text-[#1E3A5F] px-6 py-2 rounded-full text-[13px] font-bold active:scale-95 transition-transform" onclick="showToast('提现申请已提交')">提现</button>
+</div>
+</div>
+<!-- 规则折叠 -->
+<div class="bg-white rounded-xl card-shadow p-[14px] mb-[16px]">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleRules()">
+<span class="text-[14px] font-medium">平台规则与阶梯抽成</span>
+<iconify-icon class="text-gray-300 transition-transform" icon="mdi:chevron-down" id="rules-icon"></iconify-icon>
+</div>
+<div class="hidden mt-3 pt-3 border-t border-gray-50 text-[12px] space-y-3" id="rules-content">
+<div class="bg-blue-50/50 p-2 rounded-lg text-main-blue text-[11px]">
+                        平台基础抽成比例已由 15% 下调至 <span class="font-bold">12%</span>
+</div>
+<table class="w-full text-center border-collapse">
+<thead>
+<tr class="text-gray-400 border-b border-gray-50">
+<th class="py-2 font-normal">月完成单量</th>
+<th class="py-2 font-normal">抽成比例</th>
+<th class="py-2 font-normal">骑手实得</th>
+</tr>
+</thead>
+<tbody class="text-gray-600">
+<tr class="border-b border-gray-50">
+<td class="py-2">0-50单</td>
+<td class="py-2">18%</td>
+<td class="py-2">82%</td>
+</tr>
+<tr class="border-b border-gray-50">
+<td class="py-2">51-100单</td>
+<td class="py-2">15%</td>
+<td class="py-2">85%</td>
+</tr>
+<tr class="border-b border-gray-100 bg-blue-50/30">
+<td class="py-2 font-bold">101-200单</td>
+<td class="py-2 font-bold">12%</td>
+<td class="py-2 font-bold">88%</td>
+</tr>
+<tr>
+<td class="py-2">200单以上</td>
+<td class="py-2">10%</td>
+<td class="py-2">90%</td>
+</tr>
+</tbody>
+</table>
+<div class="text-[10px] text-gray-400">
+                        * 结算周期：订单完成后实时到账
+                    </div>
+</div>
+</div>
+<!-- 收益记录 -->
+<div class="space-y-[10px]">
+<h3 class="text-[14px] font-medium text-gray-400 mb-2">最近收益</h3>
+<div class="bg-white rounded-xl p-[14px] card-shadow flex justify-between items-center" onclick="showToast('收益详情')">
+<div>
+<p class="text-[14px]">快递代取 (已完成)</p>
+<p class="text-[11px] text-gray-300">今天 13:20</p>
+</div>
+<span class="text-[14px] font-bold text-main-blue">+4.25</span>
+</div>
+<div class="bg-white rounded-xl p-[14px] card-shadow flex justify-between items-center" onclick="showToast('收益详情')">
+<div>
+<p class="text-[14px]">食堂代买 (已完成)</p>
+<p class="text-[11px] text-gray-300">今天 12:15</p>
+</div>
+<span class="text-[14px] font-bold text-main-blue">+2.55</span>
+</div>
+</div>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[58px] bg-white/95 backdrop-blur-md border-t border-gray-100 flex items-center justify-around z-[100] px-2">
+<a class="flex flex-col items-center text-gray-400" href="./home.html">
+<iconify-icon class="text-[20px]" icon="mdi:home-variant-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[20px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">服务单</span>
+</a>
+<a class="w-[46px] h-[46px] bg-main-gradient rounded-full flex items-center justify-center text-white shadow-lg -mt-7 border-[3px] border-[#F5F8FA]" href="./publish.html">
+<iconify-icon class="text-[24px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[20px]" icon="mdi:clipboard-text-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[20px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function toggleRules() {
+            const content = document.getElementById('rules-content');
+            const icon = document.getElementById('rules-icon');
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
+<iconify-icon class="text-[18px]" icon="mdi:account-circle-outline"></iconify-icon>
+<span class="text-[10px]">我的</span>
+
+
+
+<script>
+        function toggleRules() {
+            const content = document.getElementById('rules-content');
+            const icon = document.getElementById('rules-icon');
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+    </script>
+
+

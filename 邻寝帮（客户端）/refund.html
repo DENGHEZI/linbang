@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>退款与评价 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<link href="./common.css" rel="stylesheet"/>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #1E3A5F; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .tab-active { color: #1E3A5F; border-bottom: 2px solid #1E3A5F; font-weight: bold; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部导航 -->
+<div class="bg-main-gradient h-[60px] px-[14px] pt-4 flex items-center flex-none relative overflow-hidden">
+<div class="decor-circle-1" style="width:100px;height:100px;top:-30px;right:-20px;"></div>
+<button class="text-white text-xl relative z-10" onclick="history.back()">
+<iconify-icon icon="mdi:arrow-left"></iconify-icon>
+</button>
+<h1 class="text-white font-bold text-[17px] flex-1 text-center pr-6 relative z-10">售后评价</h1>
+</div>
+<div class="bg-white flex-none flex border-b border-gray-50">
+<button class="flex-1 py-3 text-[14px] text-center tab-active" id="tab-refund" onclick="switchMode('refund')">退款申请</button>
+<button class="flex-1 py-3 text-[14px] text-center text-gray-400" id="tab-review" onclick="switchMode('review')">我的评价</button>
+</div>
+<div class="flex-1 overflow-y-auto px-[14px] py-4 hide-scrollbar pb-24">
+<!-- 退款表单 - 间距缩小 -->
+<div class="space-y-[16px]" id="section-refund">
+<div class="bg-white rounded-xl p-[14px] card-shadow">
+<h4 class="text-[14px] font-medium mb-3">订单选择</h4>
+<div class="bg-gray-50 rounded-lg p-2.5 flex justify-between items-center text-[12px] text-gray-600">
+<span>ER20260723005 - 食堂代买</span>
+<iconify-icon icon="mdi:chevron-down"></iconify-icon>
+</div>
+</div>
+<div class="bg-white rounded-xl p-[14px] card-shadow">
+<h4 class="text-[14px] font-medium mb-3">退款原因</h4>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center p-2 border border-gray-50 rounded-lg text-[12px]">
+<input class="mr-2 accent-blue-500" type="checkbox"/> 未按时送达
+                        </label>
+<label class="flex items-center p-2 border border-gray-50 rounded-lg text-[12px]">
+<input class="mr-2 accent-blue-500" type="checkbox"/> 物品损坏
+                        </label>
+</div>
+<textarea class="w-full text-[12px] bg-gray-50 rounded-lg p-3 mt-3 outline-none resize-none" placeholder="详细描述..." rows="3"></textarea>
+</div>
+<button class="w-full bg-main-blue text-white py-3 rounded-lg text-[16px] font-medium" onclick="handleSubmit()">提交申请</button>
+<div class="mt-6">
+<h4 class="text-[14px] font-medium mb-3 text-gray-400">申请记录</h4>
+<div class="bg-white rounded-xl p-[14px] card-shadow flex justify-between items-center" onclick="showToast('正在审核中')">
+<span class="text-[12px]">ER20240720112</span>
+<span class="text-[12px] text-orange-400">退款中</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[58px] bg-white/95 backdrop-blur-md border-t border-gray-100 flex items-center justify-around z-[100] px-2">
+<a class="flex flex-col items-center text-gray-400" href="./home.html">
+<iconify-icon class="text-[20px]" icon="mdi:home-variant-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[20px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">服务单</span>
+</a>
+<a class="w-[46px] h-[46px] bg-main-gradient rounded-full flex items-center justify-center text-white shadow-lg -mt-7 border-[3px] border-[#F5F8FA]" href="./publish.html">
+<iconify-icon class="text-[24px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[20px]" icon="mdi:clipboard-text-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[20px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px] mt-0.5">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function switchMode(mode) {
+            document.getElementById('tab-refund').className = `flex-1 py-3 text-[14px] text-center ${mode === 'refund' ? 'tab-active' : 'text-gray-400'}`;
+            document.getElementById('tab-review').className = `flex-1 py-3 text-[14px] text-center ${mode === 'review' ? 'tab-active' : 'text-gray-400'}`;
+            showToast('功能切换成功');
+        }
+
+        function handleSubmit() {
+            showToast('提交成功，我们将尽快处理');
+            setTimeout(() => {
+                history.back();
+            }, 1500);
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

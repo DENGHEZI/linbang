@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>抢单大厅 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .tab-active { background-color: #4A90D9; color: white; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部区域 - 缩小 -->
+<div class="bg-main-blue px-[14px] pt-10 pb-4 flex-none">
+<div class="flex justify-between items-center mb-4">
+<h1 class="text-white font-bold text-[18px]">抢单大厅</h1>
+<div class="flex items-center bg-white/20 px-3 py-1.5 rounded-full border border-white/30 cursor-pointer">
+<span class="text-white text-[11px] mr-2">在线接单</span>
+<div class="w-6 h-3 bg-green-400 rounded-full relative">
+<div class="w-2 h-2 bg-white rounded-full absolute top-0.5 right-0.5"></div>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="flex-1 bg-white/10 rounded-xl p-3 border border-white/10 text-white">
+<p class="text-white/70 text-[11px]">今日已抢</p>
+<p class="text-[16px] font-bold">12 单</p>
+</div>
+<div class="flex-1 bg-white/10 rounded-xl p-3 border border-white/10 text-white">
+<p class="text-white/70 text-[11px]">今日收益</p>
+<p class="text-[16px] font-bold">¥56.50</p>
+</div>
+</div>
+</div>
+<!-- 筛选栏 -->
+<div class="px-[14px] py-3 flex gap-2 overflow-x-auto hide-scrollbar flex-none">
+<button class="flex-none px-4 py-1.5 rounded-full text-[12px] tab-active">全部</button>
+<button class="flex-none px-4 py-1.5 rounded-full text-[12px] bg-white border border-gray-100 text-gray-500">快递</button>
+<button class="flex-none px-4 py-1.5 rounded-full text-[12px] bg-white border border-gray-100 text-gray-500">食堂</button>
+<button class="flex-none px-4 py-1.5 rounded-full text-[12px] bg-white border border-gray-100 text-gray-500">代办</button>
+<button class="flex-none px-4 py-1.5 rounded-full text-[12px] bg-white border border-gray-100 text-gray-500">其他</button>
+</div>
+<!-- 订单列表 - 精简 -->
+<div class="flex-1 overflow-y-auto px-[14px] pb-20 hide-scrollbar space-y-[10px]">
+<div class="bg-white rounded-xl p-[14px] card-shadow">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[11px] bg-blue-50 text-main-blue px-2 py-0.5 rounded">快递代取</span>
+<span class="text-[16px] font-bold text-main-blue">¥5.00</span>
+</div>
+<h4 class="text-[14px] font-medium mb-1">中通快递 (大件)</h4>
+<p class="text-[12px] text-gray-400">华工驿站 → 12号楼</p>
+<div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-50">
+<span class="text-[11px] text-gray-300">距离 300m | 15分钟前</span>
+<button class="bg-main-blue text-white px-5 py-1.5 rounded-full text-[12px] font-bold" onclick="handleGrab()">抢单</button>
+</div>
+</div>
+<div class="bg-white rounded-xl p-[14px] card-shadow">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[11px] bg-green-50 text-[#4ECDC4] px-2 py-0.5 rounded">食堂代买</span>
+<span class="text-[16px] font-bold text-main-blue">¥3.00</span>
+</div>
+<h4 class="text-[14px] font-medium mb-1">二饭带份叉烧饭</h4>
+<p class="text-[12px] text-gray-400">第二食堂 → 宿舍5号楼</p>
+<div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-50">
+<span class="text-[11px] text-gray-300">距离 500m | 5分钟前</span>
+<button class="bg-main-blue text-white px-5 py-1.5 rounded-full text-[12px] font-bold" onclick="handleGrab()">抢单</button>
+</div>
+</div>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[52px] bg-white border-t border-gray-100 flex items-center justify-around z-[100]">
+<a class="flex flex-col items-center text-main-blue" href="./rider-hall.html">
+<iconify-icon class="text-[18px]" icon="mdi:clipboard-list"></iconify-icon>
+<span class="text-[10px]">抢单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./rider-delivery.html">
+<iconify-icon class="text-[18px]" icon="mdi:truck-delivery-outline"></iconify-icon>
+<span class="text-[10px]">配送</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./rider-earnings.html">
+<iconify-icon class="text-[18px]" icon="mdi:currency-cny"></iconify-icon>
+<span class="text-[10px]">收益</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./rider-profile.html">
+<iconify-icon class="text-[18px]" icon="mdi:account-circle-outline"></iconify-icon>
+<span class="text-[10px]">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function handleGrab() {
+            showToast('抢单成功！请尽快取件');
+            setTimeout(() => {
+                window.location.href = './rider-delivery.html';
+            }, 1000);
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

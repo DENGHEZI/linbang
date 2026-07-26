@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>邻寝帮 - 首页</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .text-main-blue { color: #4A90D9; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .bottom-nav-active { color: #4A90D9; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<!-- 顶部区域 - 品牌区 -->
+<div class="bg-main-blue h-[160px] p-6 flex-none flex flex-col justify-end relative overflow-hidden">
+<!-- 装饰背景 -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full"></div>
+<div class="absolute top-20 -left-10 w-32 h-32 bg-white/5 rounded-full"></div>
+<div class="flex items-center justify-between mb-4 relative z-10">
+<div class="flex items-center text-white/90">
+<iconify-icon class="text-lg mr-1" icon="mdi:location"></iconify-icon>
+<span class="text-[13px] font-medium truncate max-w-[150px]">华南理工大学 (大学城)</span>
+<iconify-icon class="ml-1" icon="mdi:chevron-down"></iconify-icon>
+</div>
+<div class="flex items-center space-x-3">
+<iconify-icon class="text-xl text-white" icon="mdi:bell-outline"></iconify-icon>
+<iconify-icon class="text-xl text-white" icon="mdi:qrcode-scan"></iconify-icon>
+</div>
+</div>
+<div class="mb-2 relative z-10">
+<h1 class="text-white text-[24px] font-bold tracking-tight">邻寝帮</h1>
+<p class="text-white/80 text-[12px] mt-1">取快递、带三餐，邻寝帮随叫随到</p>
+</div>
+</div>
+<!-- 内容区 -->
+<div class="flex-1 overflow-y-auto hide-scrollbar px-[14px] -mt-6 relative z-20 pb-20">
+<!-- 搜索框 -->
+<div class="bg-white rounded-xl px-4 py-2.5 flex items-center card-shadow mb-5 border border-white">
+<iconify-icon class="text-lg mr-2 text-gray-400" icon="mdi:magnify"></iconify-icon>
+<input class="bg-transparent border-none outline-none placeholder-gray-400 text-[14px] w-full" placeholder="搜索服务、目的地、关键词..." type="text"/>
+</div>
+<!-- 核心功能入口 -->
+<div class="grid grid-cols-2 gap-3 mb-5">
+<a class="bg-white p-4 rounded-2xl card-shadow flex flex-col border border-transparent hover:border-blue-100 transition-all active:scale-95" href="./publish.html?type=express">
+<div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mb-3">
+<iconify-icon class="text-2xl text-[#4A90D9]" icon="mdi:package-variant-closed"></iconify-icon>
+</div>
+<span class="text-[15px] font-bold text-gray-800">快递代取</span>
+<span class="text-[11px] text-gray-400 mt-0.5">极速送达寝室楼下</span>
+</a>
+<a class="bg-white p-4 rounded-2xl card-shadow flex flex-col border border-transparent hover:border-green-100 transition-all active:scale-95" href="./publish.html?type=food">
+<div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center mb-3">
+<iconify-icon class="text-2xl text-[#4ECDC4]" icon="mdi:food-fork-drink"></iconify-icon>
+</div>
+<span class="text-[15px] font-bold text-gray-800">食堂代买</span>
+<span class="text-[11px] text-gray-400 mt-0.5">热腾腾的饭菜即刻到</span>
+</a>
+<a class="bg-white p-4 rounded-2xl card-shadow flex flex-col border border-transparent hover:border-yellow-100 transition-all active:scale-95" href="./publish.html?type=task">
+<div class="w-10 h-10 bg-yellow-50 rounded-xl flex items-center justify-center mb-3">
+<iconify-icon class="text-2xl text-[#F59E0B]" icon="mdi:clipboard-text-clock"></iconify-icon>
+</div>
+<span class="text-[15px] font-bold text-gray-800">代办事务</span>
+<span class="text-[11px] text-gray-400 mt-0.5">排队打印、材料代交</span>
+</a>
+<a class="bg-white p-4 rounded-2xl card-shadow flex flex-col border border-transparent hover:border-purple-100 transition-all active:scale-95" href="./publish.html?type=delivery">
+<div class="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center mb-3">
+<iconify-icon class="text-2xl text-purple-500" icon="mdi:rocket-launch"></iconify-icon>
+</div>
+<span class="text-[15px] font-bold text-gray-800">即时速递</span>
+<span class="text-[11px] text-gray-400 mt-0.5">校内物品快速传递</span>
+</a>
+</div>
+<!-- 其他服务与广场 -->
+<div class="flex gap-3 mb-5">
+<a class="flex-1 bg-white p-3 rounded-xl card-shadow flex items-center gap-3 active:bg-gray-50" href="./publish.html?category=other">
+<div class="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center">
+<span class="text-lg">✏️</span>
+</div>
+<div>
+<p class="text-[13px] font-bold text-gray-800">其他服务</p>
+<p class="text-[10px] text-gray-400">万能帮办</p>
+</div>
+</a>
+<a class="flex-1 bg-white p-3 rounded-xl card-shadow flex items-center gap-3 border border-blue-50 relative overflow-hidden active:bg-blue-50/30" href="./services.html">
+<div class="absolute -top-1 -right-1 bg-red-500 text-white text-[8px] px-2 py-0.5 rounded-bl-lg font-bold">HOT</div>
+<div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+<iconify-icon class="text-xl text-main-blue" icon="mdi:cart"></iconify-icon>
+</div>
+<div>
+<p class="text-[13px] font-bold text-main-blue">服务广场</p>
+<p class="text-[10px] text-gray-400">浏览全部订单</p>
+</div>
+</a>
+</div>
+<!-- 服务定价 - 默认收起 -->
+<div class="bg-white rounded-xl card-shadow mb-5 overflow-hidden border border-gray-50">
+<div class="px-4 py-3 flex justify-between items-center cursor-pointer active:bg-gray-50" onclick="togglePricing()">
+<div class="flex items-center">
+<iconify-icon class="text-lg text-main-blue mr-2" icon="mdi:cash-multiple"></iconify-icon>
+<span class="text-[14px] font-bold text-gray-800">官方指导定价表</span>
+</div>
+<iconify-icon class="text-gray-300 transition-transform" icon="mdi:chevron-down" id="pricing-icon"></iconify-icon>
+</div>
+<div class="hidden px-4 pb-4 animate-fade-in" id="pricing-content">
+<div class="space-y-2 pt-2 border-t border-gray-50 mt-1">
+<div class="flex justify-between text-[12px] py-1">
+<span class="text-gray-500">小型快递 (1kg以内)</span>
+<span class="font-medium text-gray-700">¥2.00 起</span>
+</div>
+<div class="flex justify-between text-[12px] py-1">
+<span class="text-gray-500">中型快递 (1-5kg)</span>
+<span class="font-medium text-gray-700">¥3.00 起</span>
+</div>
+<div class="flex justify-between text-[12px] py-1">
+<span class="text-gray-500">食堂代买 (单份)</span>
+<span class="font-medium text-gray-700">¥3.00 起</span>
+</div>
+<div class="flex justify-between text-[12px] py-1">
+<span class="text-gray-500">打印代拿 (50张以内)</span>
+<span class="font-medium text-gray-700">¥2.00 起</span>
+</div>
+<p class="text-[10px] text-gray-400 mt-2 text-center">* 价格仅供参考，实际以发单协商为准</p>
+</div>
+</div>
+</div>
+<!-- 数据入口 -->
+<div class="grid grid-cols-2 gap-3 mb-6">
+<a class="bg-white/60 p-3 rounded-xl border border-gray-100 flex items-center justify-center gap-2 active:bg-white transition-colors" href="./dashboard.html">
+<iconify-icon class="text-lg text-gray-400" icon="mdi:chart-box-outline"></iconify-icon>
+<span class="text-[12px] text-gray-600">数据看板</span>
+</a>
+<a class="bg-white/60 p-3 rounded-xl border border-gray-100 flex items-center justify-center gap-2 active:bg-white transition-colors" href="./order-table.html">
+<iconify-icon class="text-lg text-gray-400" icon="mdi:table-large"></iconify-icon>
+<span class="text-[12px] text-gray-600">接单表</span>
+</a>
+</div>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[52px] bg-white border-t border-gray-100 flex items-center justify-around z-[100]">
+<a class="flex flex-col items-center text-main-blue" href="./home.html">
+<iconify-icon class="text-[18px]" icon="mdi:home-variant"></iconify-icon>
+<span class="text-[10px]">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[18px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px]">服务单</span>
+</a>
+<a class="w-[42px] h-[42px] bg-main-blue rounded-full flex items-center justify-center text-white shadow-lg -mt-6" href="./publish.html">
+<iconify-icon class="text-[20px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[18px]" icon="mdi:clipboard-text-outline"></iconify-icon>
+<span class="text-[10px]">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[18px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px]">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function togglePricing() {
+            const content = document.getElementById('pricing-content');
+            const icon = document.getElementById('pricing-icon');
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 
+                'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);' +
+                'background:rgba(0,0,0,0.78);color:#fff;padding:12px 28px;' +
+                'border-radius:24px;font-size:14px;z-index:9999;white-space:nowrap;' +
+                'pointer-events:none;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() {
+                    if (toast.parentNode) toast.parentNode.removeChild(toast);
+                }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background-color: $color-bg-page;
+  padding: 48rpx 28rpx;
+}
+
+.progressBar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 64rpx;
+  padding: 0 28rpx;
+}
+
+.progressItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.progressDot {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: #E5E7EB;
+  color: #6B7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.progressItem.active .progressDot {
+  background: $color-primary;
+  color: #fff;
+}
+
+.progressLabel {
+  font-size: 22rpx;
+  color: $color-text-disabled;
+}
+
+.progressItem.active .progressLabel {
+  color: $color-primary;
+  font-weight: 500;
+}
+
+.progressLine {
+  flex: 1;
+  height: 4rpx;
+  background: #E5E7EB;
+  margin: 0 12rpx;
+  margin-bottom: 36rpx;
+  border-radius: 2rpx;
+}
+
+.progressLine.active {
+  background: $color-primary;
+}
+
+.formContent {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-shadow: $shadow-card;
+}
+
+.formTitle {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: $color-text-primary;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.formDesc {
+  font-size: 24rpx;
+  color: $color-text-secondary;
+  display: block;
+  margin-bottom: 48rpx;
+}
+
+.formItem {
+  margin-bottom: 32rpx;
+}
+
+.formLabel {
+  font-size: 26rpx;
+  color: $color-text-secondary;
+  margin-bottom: 12rpx;
+  display: block;
+}
+
+.formInput {
+  width: 100%;
+  background: $color-bg-soft;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  font-size: 30rpx;
+}
+
+.schoolList {
+  margin: 32rpx 0;
+  max-height: 400rpx;
+  overflow-y: auto;
+}
+
+.schoolItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx;
+  background: $color-bg-soft;
+  border-radius: 16rpx;
+  margin-bottom: 16rpx;
+
+  &.selected {
+    background: #EFF6FF;
+    border: 2rpx solid $color-primary;
+  }
+}
+
+.schoolName {
+  font-size: 28rpx;
+  color: $color-text-primary;
+}
+
+.schoolArrow {
+  font-size: 28rpx;
+  color: $color-text-disabled;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 48rpx;
+}
+
+.btn {
+  flex: 1;
+  padding: 28rpx;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+  text-align: center;
+  font-weight: 500;
+
+  &.outline {
+    border: 2rpx solid $color-border;
+    color: $color-text-secondary;
+    background: #fff;
+  }
+
+  &.primary {
+    background: $color-primary;
+    color: #fff;
+  }
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.uploadSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx;
+  background: $color-bg-soft;
+  border-radius: 20rpx;
+  margin-bottom: 32rpx;
+  border: 2rpx dashed $color-border;
+}
+
+.uploadIcon {
+  font-size: 72rpx;
+  margin-bottom: 16rpx;
+}
+
+.uploadText {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: $color-text-primary;
+}
+
+.uploadHint {
+  font-size: 22rpx;
+  color: $color-text-tertiary;
+  margin-top: 8rpx;
+}
+
+.previewCard {
+  background: #FFFBEB;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  border: 2rpx solid #FDE68A;
+}
+
+.previewIcon {
+  font-size: 48rpx;
+  margin-bottom: 16rpx;
+}
+
+.previewTitle {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: $color-text-primary;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.previewRow {
+  display: flex;
+  margin-bottom: 8rpx;
+  font-size: 26rpx;
+}
+
+.previewLabel {
+  color: $color-text-secondary;
+  width: 120rpx;
+}
+
+.previewValue {
+  color: $color-text-primary;
+  font-weight: 500;
+}

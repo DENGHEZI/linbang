@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>身份认证 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<div class="bg-main-blue h-[52px] px-[14px] flex items-center flex-none">
+<button class="text-white text-xl" onclick="history.back()">
+<iconify-icon icon="mdi:arrow-left"></iconify-icon>
+</button>
+<h1 class="text-white font-bold text-[18px] flex-1 text-center pr-8">实名认证</h1>
+</div>
+<div class="flex-1 p-[14px] space-y-[16px]">
+<div class="bg-white rounded-xl p-[14px] card-shadow space-y-4">
+<div>
+<p class="text-[12px] text-gray-400 mb-2">姓名</p>
+<input class="w-full bg-gray-50 rounded-lg px-4 py-2.5 text-[14px] outline-none" placeholder="输入真实姓名" type="text"/>
+</div>
+<div>
+<p class="text-[12px] text-gray-400 mb-2">学号</p>
+<input class="w-full bg-gray-50 rounded-lg px-4 py-2.5 text-[14px] outline-none" placeholder="输入学号" type="text"/>
+</div>
+<div>
+<p class="text-[12px] text-gray-400 mb-2">学校</p>
+<div class="w-full bg-gray-50 rounded-lg px-4 py-2.5 text-[14px] flex justify-between items-center text-gray-400">
+<span>选择所属学校</span>
+<iconify-icon icon="mdi:chevron-right"></iconify-icon>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl p-[14px] card-shadow">
+<p class="text-[12px] text-gray-400 mb-3">上传证件照 (正反面)</p>
+<div class="grid grid-cols-2 gap-3">
+<div class="aspect-video bg-gray-50 rounded-lg flex flex-col items-center justify-center border border-dashed border-gray-200">
+<iconify-icon class="text-xl text-gray-300" icon="mdi:camera-plus-outline"></iconify-icon>
+<span class="text-[10px] text-gray-400 mt-1">点击上传</span>
+</div>
+<div class="aspect-video bg-gray-50 rounded-lg flex flex-col items-center justify-center border border-dashed border-gray-200">
+<iconify-icon class="text-xl text-gray-300" icon="mdi:camera-plus-outline"></iconify-icon>
+<span class="text-[10px] text-gray-400 mt-1">点击上传</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-main-blue text-white py-3 rounded-lg text-[16px] font-medium mt-4" onclick="handleSubmit()">提交审核</button>
+</div>
+</div>
+<script>
+        function handleSubmit() {
+            showToast('资料已提交，预计1-2个工作日完成审核');
+            setTimeout(() => {
+                history.back();
+            }, 2000);
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

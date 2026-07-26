@@ -1,0 +1,276 @@
+{
+	"bsonType": "object",
+	"required": [
+		"orderNo",
+		"user_id",
+		"category",
+		"itemType",
+		"title",
+		"pickupAddress",
+		"deliveryAddress",
+		"price",
+		"status",
+		"created_at",
+		"updated_at"
+	],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"orderNo": {
+			"bsonType": "string",
+			"description": "订单编号，系统自动生成",
+			"maxLength": 32
+		},
+		"user_id": {
+			"bsonType": "string",
+			"description": "用户ID（发单者）",
+			"foreignKey": "uni-id-users._id"
+		},
+		"user_name": {
+			"bsonType": "string",
+			"description": "发单者姓名",
+			"defaultValue": ""
+		},
+		"rider_id": {
+			"bsonType": "string",
+			"description": "骑手ID（接单者）",
+			"foreignKey": "uni-id-users._id",
+			"defaultValue": null
+		},
+		"rider_name": {
+			"bsonType": "string",
+			"description": "接单者姓名",
+			"defaultValue": ""
+		},
+		"rider_phone": {
+			"bsonType": "string",
+			"description": "接单者电话",
+			"defaultValue": ""
+		},
+		"category": {
+			"bsonType": "string",
+			"description": "订单分类",
+			"enum": [
+				{ "value": "delivery", "text": "快递代取" },
+				{ "value": "food", "text": "餐饮外送" },
+				{ "value": "print", "text": "打印代办" },
+				{ "value": "errand", "text": "跑腿代办" },
+				{ "value": "other", "text": "其他服务" }
+			]
+		},
+		"itemType": {
+			"bsonType": "string",
+			"description": "物品种类",
+			"enum": [
+				{ "value": "document", "text": "文件" },
+				{ "value": "clothing", "text": "衣物" },
+				{ "value": "food", "text": "食品" },
+				{ "value": "daily", "text": "日用品" },
+				{ "value": "electronics", "text": "电子产品" },
+				{ "value": "medicine", "text": "药品" },
+				{ "value": "other", "text": "其他" }
+			]
+		},
+		"itemWeight": {
+			"bsonType": "string",
+			"description": "物品重量/规格",
+			"enum": [
+				{ "value": "light", "text": "轻小件(<1kg)" },
+				{ "value": "medium", "text": "中等(1-5kg)" },
+				{ "value": "heavy", "text": "大件(5-10kg)" },
+				{ "value": "very_heavy", "text": "超重(>10kg)" }
+			]
+		},
+		"title": {
+			"bsonType": "string",
+			"description": "订单标题",
+			"maxLength": 100
+		},
+		"description": {
+			"bsonType": "string",
+			"description": "物品标注信息/详细描述",
+			"maxLength": 500,
+			"defaultValue": ""
+		},
+		"pickupAddress": {
+			"bsonType": "string",
+			"description": "取货地址",
+			"maxLength": 200
+		},
+		"deliveryAddress": {
+			"bsonType": "string",
+			"description": "送货地址",
+			"maxLength": 200
+		},
+		"pickupLocation": {
+			"bsonType": "object",
+			"description": "取货坐标",
+			"properties": {
+				"latitude": { "bsonType": "double", "description": "纬度" },
+				"longitude": { "bsonType": "double", "description": "经度" }
+			}
+		},
+		"deliveryLocation": {
+			"bsonType": "object",
+			"description": "送货坐标",
+			"properties": {
+				"latitude": { "bsonType": "double", "description": "纬度" },
+				"longitude": { "bsonType": "double", "description": "经度" }
+			}
+		},
+		"pickupTimeRange": {
+			"bsonType": "object",
+			"description": "取货时间区间",
+			"properties": {
+				"start": { "bsonType": "string", "description": "开始时间" },
+				"end": { "bsonType": "string", "description": "结束时间" }
+			}
+		},
+		"price": {
+			"bsonType": "double",
+			"description": "订单价格（元）",
+			"minimum": 1,
+			"maximum": 500
+		},
+		"serviceFee": {
+			"bsonType": "double",
+			"description": "服务费",
+			"defaultValue": 0
+		},
+		"platformFee": {
+			"bsonType": "double",
+			"description": "平台抽成(20%)",
+			"defaultValue": 0
+		},
+		"riderIncome": {
+			"bsonType": "double",
+			"description": "骑手收入",
+			"defaultValue": 0
+		},
+		"urgency": {
+			"bsonType": "string",
+			"description": "紧急程度",
+			"enum": [
+				{ "value": "normal", "text": "普通" },
+				{ "value": "urgent", "text": "加急" }
+			],
+			"defaultValue": "normal"
+		},
+		"deliveryTime": {
+			"bsonType": "string",
+			"description": "期望送达时间",
+			"defaultValue": ""
+		},
+		"images": {
+			"bsonType": "array",
+			"description": "订单相关图片",
+			"defaultValue": []
+		},
+		"pickup_proofs": {
+			"bsonType": "array",
+			"description": "取货凭证图片",
+			"defaultValue": [],
+			"properties": {
+				"url": { "bsonType": "string", "description": "图片URL/文件ID" },
+				"uploaded_at": { "bsonType": "timestamp", "description": "上传时间" },
+				"index": { "bsonType": "int", "description": "图片序号" }
+			}
+		},
+		"pickup_proofs_count": {
+			"bsonType": "int",
+			"description": "取货凭证图片数量",
+			"defaultValue": 0
+		},
+		"proofs_uploaded_at": {
+			"bsonType": "timestamp",
+			"description": "凭证上传时间",
+			"defaultValue": null
+		},
+		"remark": {
+			"bsonType": "string",
+			"description": "备注",
+			"maxLength": 200,
+			"defaultValue": ""
+		},
+		"contactPhone": {
+			"bsonType": "string",
+			"description": "联系电话",
+			"pattern": "^1[3-9]\\d{9}$"
+		},
+		"status": {
+			"bsonType": "string",
+			"description": "订单状态",
+			"enum": [
+				{ "value": "pending_payment", "text": "待支付" },
+				{ "value": "pending", "text": "待接单" },
+				{ "value": "accepted", "text": "已接单" },
+				{ "value": "picking", "text": "取货中" },
+				{ "value": "delivering", "text": "配送中" },
+				{ "value": "delivered", "text": "待收货" },
+				{ "value": "completed", "text": "已完成" },
+				{ "value": "cancelled", "text": "已取消" },
+				{ "value": "refunding", "text": "退款中" }
+			]
+		},
+		"rating": {
+			"bsonType": "object",
+			"description": "评价信息",
+			"defaultValue": null,
+			"properties": {
+				"score": { "bsonType": "int", "description": "评分（1-5星）", "minimum": 1, "maximum": 5 },
+				"comment": { "bsonType": "string", "description": "评价内容" },
+				"images": { "bsonType": "array", "description": "评价图片" }
+			}
+		},
+		"cancelReason": {
+			"bsonType": "string",
+			"description": "取消原因",
+			"defaultValue": ""
+		},
+		"created_at": {
+			"bsonType": "timestamp",
+			"description": "创建时间"
+		},
+		"updated_at": {
+			"bsonType": "timestamp",
+			"description": "更新时间"
+		},
+		"accepted_at": {
+			"bsonType": "timestamp",
+			"description": "接单时间",
+			"defaultValue": null
+		},
+		"completed_at": {
+			"bsonType": "timestamp",
+			"description": "完成时间",
+			"defaultValue": null
+		},
+		"cancelled_at": {
+			"bsonType": "timestamp",
+			"description": "取消时间",
+			"defaultValue": null
+		},
+		"ai_chat_session_id": {
+			"bsonType": "string",
+			"description": "AI客服会话ID",
+			"defaultValue": null
+		},
+		"ai_chat_count": {
+			"bsonType": "int",
+			"description": "AI客服对话次数",
+			"defaultValue": 0
+		},
+		"last_ai_contact_at": {
+			"bsonType": "timestamp",
+			"description": "最后一次AI客服联系时间",
+			"defaultValue": null
+		}
+	}
+}

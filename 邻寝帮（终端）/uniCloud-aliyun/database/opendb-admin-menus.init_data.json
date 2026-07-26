@@ -1,0 +1,68 @@
+[
+  {
+    "menu_id": "business_management",
+    "name": "业务管理",
+    "icon": "admin-icons-doc",
+    "url": "",
+    "sort": 500,
+    "parent_id": "",
+    "permission": [],
+    "enable": true,
+    "create_date": 1720000000000
+  },
+  {
+    "menu_id": "business_order",
+    "name": "订单管理",
+    "icon": "admin-icons-table",
+    "url": "/pages/business/order/list",
+    "sort": 501,
+    "parent_id": "business_management",
+    "permission": [],
+    "enable": true,
+    "create_date": 1720000000001
+  },
+  {
+    "menu_id": "business_bank_card",
+    "name": "银行卡管理",
+    "icon": "admin-icons-ziyuan",
+    "url": "/pages/business/bank-card/list",
+    "sort": 502,
+    "parent_id": "business_management",
+    "permission": [],
+    "enable": true,
+    "create_date": 1720000000002
+  },
+  {
+    "menu_id": "business_rider_income",
+    "name": "骑手收入管理",
+    "icon": "admin-icons-tongji",
+    "url": "/pages/business/rider-income/list",
+    "sort": 503,
+    "parent_id": "business_management",
+    "permission": [],
+    "enable": true,
+    "create_date": 1720000000003
+  },
+  {
+    "menu_id": "business_rider_rating",
+    "name": "骑手评分管理",
+    "icon": "admin-icons-yonghutongji",
+    "url": "/pages/business/rider-rating/list",
+    "sort": 504,
+    "parent_id": "business_management",
+    "permission": [],
+    "enable": true,
+    "create_date": 1720000000004
+  },
+  {
+    "menu_id": "business_ai_chat",
+    "name": "AI对话管理",
+    "icon": "admin-icons-help",
+    "url": "/pages/business/ai-chat/list",
+    "sort": 505,
+    "parent_id": "business_management",
+    "permission": [],
+    "enable": true,
+    "create_date": 1720000000005
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "name": "aiChat",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

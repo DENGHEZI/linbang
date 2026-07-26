@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Build output
+unpackage/dist/
+unpackage/resources/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Cache
+.cache/
+.pai/
+
+# Temporary
+temp/
+tmp/
+*.tmp
+
+# Runtime / Generated files
+linbang_shared_data.json
+data-bridge-server.js
+generate_source_code.js
+generate_copyright_docs.js
+generate_pdf.js
+
+# Software copyright documents (generated)
+软件著作权登记文档/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Mini-program build output
+dist/
+.hbuilderx/
+
+# Shared data
+shared_data/

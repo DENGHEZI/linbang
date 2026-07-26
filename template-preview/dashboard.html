@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>数据大盘 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<div class="bg-main-blue h-[52px] flex items-center px-[14px] flex-none">
+<button class="text-white text-xl" onclick="history.back()">
+<iconify-icon icon="mdi:arrow-left"></iconify-icon>
+</button>
+<h1 class="text-white font-bold text-[18px] flex-1 text-center pr-8">数据概览</h1>
+</div>
+<div class="flex-1 overflow-y-auto px-[14px] py-4 hide-scrollbar space-y-[16px] pb-24">
+<div class="grid grid-cols-2 gap-[10px]">
+<div class="bg-white p-[14px] rounded-xl card-shadow" onclick="showToast('订单总量数据')">
+<p class="text-[11px] text-gray-400 mb-1">总订单量</p>
+<p class="text-[18px] font-bold">2,847</p>
+</div>
+<div class="bg-white p-[14px] rounded-xl card-shadow" onclick="showToast('活跃骑手列表')">
+<p class="text-[11px] text-gray-400 mb-1">活跃骑手</p>
+<p class="text-[18px] font-bold">186</p>
+</div>
+<div class="bg-white p-[14px] rounded-xl card-shadow" onclick="showToast('平台流水详情')">
+<p class="text-[11px] text-gray-400 mb-1">平台流水</p>
+<p class="text-[18px] font-bold">¥38,492</p>
+</div>
+<div class="bg-white p-[14px] rounded-xl card-shadow" onclick="showToast('好评率统计')">
+<p class="text-[11px] text-gray-400 mb-1">好评率</p>
+<p class="text-[18px] font-bold">99.2%</p>
+</div>
+</div>
+<div class="bg-white p-[14px] rounded-xl card-shadow">
+<h3 class="text-[14px] font-medium mb-4 flex items-center">
+<iconify-icon class="text-main-blue mr-2" icon="mdi:finance"></iconify-icon>
+                    平台抽成分布
+                </h3>
+<div class="space-y-3">
+<div class="flex items-center">
+<span class="text-[11px] text-gray-500 w-20">18% (0-50单)</span>
+<div class="flex-1 h-2 bg-gray-50 rounded-full overflow-hidden mx-3">
+<div class="h-full bg-blue-200" style="width: 45%"></div>
+</div>
+<span class="text-[11px] font-bold">45%</span>
+</div>
+<div class="flex items-center">
+<span class="text-[11px] text-gray-500 w-20">15% (51-100单)</span>
+<div class="flex-1 h-2 bg-gray-50 rounded-full overflow-hidden mx-3">
+<div class="h-full bg-blue-300" style="width: 30%"></div>
+</div>
+<span class="text-[11px] font-bold">30%</span>
+</div>
+<div class="flex items-center">
+<span class="text-[11px] text-gray-500 w-20">12% (101-200单)</span>
+<div class="flex-1 h-2 bg-gray-50 rounded-full overflow-hidden mx-3">
+<div class="h-full bg-blue-500" style="width: 15%"></div>
+</div>
+<span class="text-[11px] font-bold">15%</span>
+</div>
+<div class="flex items-center">
+<span class="text-[11px] text-gray-500 w-20">10% (200单+)</span>
+<div class="flex-1 h-2 bg-gray-50 rounded-full overflow-hidden mx-3">
+<div class="h-full bg-blue-600" style="width: 10%"></div>
+</div>
+<span class="text-[11px] font-bold">10%</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-[14px] rounded-xl card-shadow" onclick="showToast('近期趋势图表')">
+<h3 class="text-[14px] font-medium mb-4">订单趋势 (近7日)</h3>
+<div class="flex items-end justify-between h-24 gap-2">
+<div class="flex-1 bg-blue-50 rounded-t h-[60%]"></div>
+<div class="flex-1 bg-blue-50 rounded-t h-[40%]"></div>
+<div class="flex-1 bg-blue-50 rounded-t h-[80%]"></div>
+<div class="flex-1 bg-blue-400 rounded-t h-[100%]"></div>
+<div class="flex-1 bg-blue-50 rounded-t h-[70%]"></div>
+<div class="flex-1 bg-blue-50 rounded-t h-[50%]"></div>
+<div class="flex-1 bg-blue-50 rounded-t h-[65%]"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-gray-300">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+</div>
+<!-- 底部导航 -->
+<nav class="absolute bottom-0 left-0 right-0 h-[52px] bg-white border-t border-gray-100 flex items-center justify-around z-[100]">
+<a class="flex flex-col items-center text-main-blue" href="./home.html">
+<iconify-icon class="text-[18px]" icon="mdi:home-variant"></iconify-icon>
+<span class="text-[10px]">首页</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./services.html">
+<iconify-icon class="text-[18px]" icon="mdi:cart-outline"></iconify-icon>
+<span class="text-[10px]">服务单</span>
+</a>
+<a class="w-[42px] h-[42px] bg-main-blue rounded-full flex items-center justify-center text-white shadow-lg -mt-6" href="./publish.html">
+<iconify-icon class="text-[20px]" icon="mdi:plus"></iconify-icon>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./orders.html">
+<iconify-icon class="text-[18px]" icon="mdi:clipboard-text-outline"></iconify-icon>
+<span class="text-[10px]">订单</span>
+</a>
+<a class="flex flex-col items-center text-gray-400" href="./profile.html">
+<iconify-icon class="text-[18px]" icon="mdi:account-outline"></iconify-icon>
+<span class="text-[10px]">我的</span>
+</a>
+</nav>
+</div>
+<script>
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>发布服务 - 邻寝帮</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+<style>
+        body { background-color: #F5F8FA; font-family: -apple-system, sans-serif; color: #333; }
+        .bg-main-blue { background-color: #4A90D9; }
+        .card-shadow { box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .active-tag { background-color: #4A90D9; color: white; border-color: #4A90D9; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="w-[375px] h-[812px] bg-[#F5F8FA] overflow-hidden flex flex-col relative shadow-2xl">
+<div class="bg-main-blue h-[52px] px-[14px] flex items-center flex-none">
+<button class="text-white text-xl" onclick="history.back()">
+<iconify-icon icon="mdi:arrow-left"></iconify-icon>
+</button>
+<h1 class="text-white font-bold text-[18px] flex-1 text-center pr-8">发布服务</h1>
+</div>
+<div class="flex-1 overflow-y-auto px-[14px] py-4 hide-scrollbar space-y-[20px]">
+<div>
+<h3 class="text-[16px] font-medium mb-3">服务类目</h3>
+<div class="flex gap-2 overflow-x-auto hide-scrollbar" id="category-list">
+<button class="flex-none px-4 py-2 rounded-full border border-gray-100 bg-white text-[12px] active-tag" onclick="selectCategory(this, 'run')">校园跑</button>
+<button class="flex-none px-4 py-2 rounded-full border border-gray-100 bg-white text-[12px]" onclick="selectCategory(this, 'study')">学习助手</button>
+<button class="flex-none px-4 py-2 rounded-full border border-gray-100 bg-white text-[12px]" onclick="selectCategory(this, 'buy')">代买代购</button>
+<button class="flex-none px-4 py-2 rounded-full border border-gray-100 bg-white text-[12px]" onclick="selectCategory(this, 'express')">快递代取</button>
+<button class="flex-none px-4 py-2 rounded-full border border-gray-100 bg-white text-[12px]" onclick="selectCategory(this, 'task')">代办事务</button>
+<button class="flex-none px-4 py-2 rounded-full border border-gray-100 bg-white text-[12px]" onclick="selectCategory(this, 'other')">✏️ 其他</button>
+</div>
+</div>
+<div class="bg-white rounded-xl p-[14px] card-shadow space-y-4">
+<div class="hidden" id="other-category-input">
+<h4 class="text-[14px] font-medium mb-2">服务类型</h4>
+<input class="w-full bg-gray-50 rounded-lg p-3 text-[12px] outline-none" id="custom-category" placeholder="请输入跑腿服务类型 (如: 代拿外卖、代遛宠物等)" type="text"/>
+</div>
+<div>
+<h4 class="text-[14px] font-medium mb-2">定价 (1-200元)</h4>
+<div class="bg-gray-50 rounded-lg px-4 py-2 flex items-center">
+<span class="text-gray-400 text-[14px] mr-1">¥</span>
+<input class="bg-transparent outline-none text-[16px] font-bold w-full" id="service-price" max="200" min="1" oninput="updateEarnings()" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div>
+<h4 class="text-[14px] font-medium mb-2">描述</h4>
+<textarea class="w-full bg-gray-50 rounded-lg p-3 text-[12px] outline-none resize-none" placeholder="描述你的服务..." rows="3"></textarea>
+</div>
+<!-- 费用预览 -->
+<div class="pt-4 border-t border-gray-50 space-y-2">
+<div class="flex justify-between text-[12px]">
+<span class="text-gray-400">基础费</span>
+<span id="base-fee-display">¥0.00</span>
+</div>
+<div class="flex justify-between text-[12px]">
+<span class="text-gray-400">平台抽成 (12%)</span>
+<span class="text-red-400" id="platform-fee-display">-¥0.00</span>
+</div>
+<div class="flex justify-between text-[14px] font-medium">
+<span>预计到手</span>
+<span class="text-main-blue" id="earning-display">¥0.00</span>
+</div>
+</div>
+<button class="w-full bg-main-blue text-white py-3 rounded-lg text-[16px] font-medium" onclick="handlePublish()">确认发布</button>
+</div>
+</div>
+</div>
+<script>
+        let selectedCategory = 'run';
+
+        function selectCategory(btn, category) {
+            selectedCategory = category;
+            document.querySelectorAll('#category-list button').forEach(b => {
+                b.classList.remove('active-tag');
+            });
+            btn.classList.add('active-tag');
+            
+            const otherInput = document.getElementById('other-category-input');
+            if (category === 'other') {
+                otherInput.classList.remove('hidden');
+            } else {
+                otherInput.classList.add('hidden');
+            }
+        }
+
+        function updateEarnings() {
+            const price = parseFloat(document.getElementById('service-price').value) || 0;
+            const baseFeeDisplay = document.getElementById('base-fee-display');
+            const platformFeeDisplay = document.getElementById('platform-fee-display');
+            const earningDisplay = document.getElementById('earning-display');
+            
+            const platformFee = price * 0.12;
+            const earnings = price - platformFee;
+            
+            baseFeeDisplay.innerText = `¥${price.toFixed(2)}`;
+            platformFeeDisplay.innerText = `-¥${platformFee.toFixed(2)}`;
+            earningDisplay.innerText = `¥${earnings.toFixed(2)}`;
+        }
+
+        function handlePublish() {
+            const price = parseFloat(document.getElementById('service-price').value);
+            if (!price || price < 1 || price > 200) {
+                showToast('请输入1-200元之间的价格');
+                return;
+            }
+            if (selectedCategory === 'other' && !document.getElementById('custom-category').value) {
+                showToast('请输入服务类型');
+                return;
+            }
+
+            showToast('服务已发布至服务广场，学生可浏览下单');
+            setTimeout(() => {
+                history.back();
+            }, 1500);
+        }
+
+        function showToast(msg) {
+            var toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:9999;white-space:nowrap;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.transition = 'opacity 0.3s';
+                toast.style.opacity = '0';
+                setTimeout(function() { document.body.removeChild(toast); }, 300);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
