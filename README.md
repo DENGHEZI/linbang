@@ -147,7 +147,7 @@ linbang/
 #### 1. 克隆项目
 
 ```bash
-git clone https://github.com/你的用户名/linbang.git
+git clone https://github.com/DENGHEZI/linbang.git
 cd linbang
 ```
 
